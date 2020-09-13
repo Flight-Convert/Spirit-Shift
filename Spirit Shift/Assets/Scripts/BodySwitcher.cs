@@ -12,23 +12,55 @@ using UnityEngine;
 
 public class BodySwitcher : MonoBehaviour
 {
-    Camera cam;
+    BasicMovement player;
 
     void Start()
     {
-        cam = Camera.main;
+        player = FindObjectOfType<BasicMovement>();
     }
 
     void Update()
     {
+        // If right mouse button is clicked
+        if (Input.GetMouseButtonDown(1))
+        {
+            // Perform a raycast to see what we clicked
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit2D hitInfo;
+            hitInfo = Physics2D.GetRayIntersection(ray);
+
+            // If we actually clicked on something
+            if (hitInfo.collider != null)
+            {
+                // If the hit object has an enemy script or is the player body
+                followPlayer fp = hitInfo.collider.GetComponent<followPlayer>();
+                if (fp != null || hitInfo.collider.CompareTag("Player"))
+                {
+                    // Switch to that body
+                    switchBodies(hitInfo.collider.gameObject);
+                }
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.B)) showBlueTeam();
         if (Input.GetKeyDown(KeyCode.R)) showRedTeam();
         if (Input.GetKeyDown(KeyCode.G)) showBothTeams();
     }
 
-    #region helper methods
+    void switchBodies(GameObject newBody)
+    {
+        // Add BasicMovement script to clicked enemy
+        BasicMovement newPlayer = newBody.AddComponent<BasicMovement>();
 
-    /// Methods to choose which team(s) to show
+        // Destroy old BasicMovement script
+        Destroy(player);
+
+        // Get reference to new BasicMovement script
+        player = newPlayer;
+    }
+
+    #region Show / Hide teams
+
     void showBlueTeam()
     {
         showLayer("BlueTeam");
@@ -53,10 +85,14 @@ public class BodySwitcher : MonoBehaviour
         hideLayer("RedTeam");
     }
 
+    #endregion
+
+    #region helper methods
+
     /// Methods to show/hide specific layers
     void showLayer(int layer)
     {
-        cam.cullingMask |= 1 << layer;
+        Camera.main.cullingMask |= 1 << layer;
     }
 
     void showLayer(string layer)
@@ -66,12 +102,13 @@ public class BodySwitcher : MonoBehaviour
 
     void hideLayer(int layer)
     {
-        cam.cullingMask &= ~(1 << layer);
+        Camera.main.cullingMask &= ~(1 << layer);
     }
 
     void hideLayer(string layer)
     {
         hideLayer(LayerMask.NameToLayer(layer));
     }
+
     #endregion
 }
