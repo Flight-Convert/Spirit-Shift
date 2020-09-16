@@ -57,6 +57,13 @@ public class BodySwitcher : MonoBehaviour
 
         // Get reference to new BasicMovement script
         player = newPlayer;
+
+        if (newBody.layer == LayerMask.NameToLayer("RedTeam"))
+            showRedTeam();
+        else if (newBody.layer == LayerMask.NameToLayer("BlueTeam"))
+            showBlueTeam();
+        else
+            showBothTeams();
     }
 
     #region Show / Hide teams
