@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: movement
   m_EditorClassIdentifier: 
   prompt: You can move around with the WASD keys. Try it now!
+  buttons: 77000000610000007300000064000000
