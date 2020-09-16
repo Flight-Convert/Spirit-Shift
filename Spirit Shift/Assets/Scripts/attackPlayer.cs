@@ -23,9 +23,23 @@ public class attackPlayer : MonoBehaviour
     {
         distance = Vector3.Distance(rb2d.transform.position, player.transform.position);
 
-        if (distance <= threshold)
+        //if player is in enemy body
+        if (rb2d.GetComponent<BasicMovement>())
         {
-            StartCoroutine(punch());
+            //on left mouse click
+            if (Input.GetMouseButtonDown(0))
+            {
+                StartCoroutine(punch());
+            }
+        }
+        //if player isn't in enemy body
+        else
+        {
+            //if enemy is close enough to player body
+            if (distance <= threshold)
+            {
+                StartCoroutine(punch());
+            }
         }
     }
 
