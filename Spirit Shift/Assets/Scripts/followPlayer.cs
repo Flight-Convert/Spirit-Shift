@@ -21,11 +21,15 @@ public class followPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerPos = (player.transform.position);
-
-        if (Mathf.Abs(rb2d.velocity.magnitude) <= speed)
+        // enemy in control
+        if (GetComponent<BasicMovement>() == null)
         {
-            rb2d.AddForce(findDirectionFromPos(playerPos) * force * Time.deltaTime);
+            playerPos = (player.transform.position);
+
+            if (Mathf.Abs(rb2d.velocity.magnitude) <= speed)
+            {
+                rb2d.AddForce(findDirectionFromPos(playerPos) * force * Time.deltaTime);
+            }
         }
     }
 

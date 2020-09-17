@@ -6,6 +6,10 @@ public class TutorialPart : ScriptableObject
 {
     public string prompt;
 
+    public virtual void Init()
+    {
+    }
+
     public virtual bool IsCompleted()
     {
         return false;
@@ -13,6 +17,5 @@ public class TutorialPart : ScriptableObject
 
     public virtual void UpdateCompletedTasks()
     {
-
     }
 }

@@ -57,6 +57,13 @@ public class BodySwitcher : MonoBehaviour
 
         // Get reference to new BasicMovement script
         player = newPlayer;
+        
+        // Stop the new bodies current movement
+        Rigidbody2D rb2d = newBody.GetComponent<Rigidbody2D>();
+        if (rb2d != null)
+        {
+            rb2d.velocity = new Vector2(0, 0);
+        }
 
         if (newBody.layer == LayerMask.NameToLayer("RedTeam"))
             showRedTeam();
