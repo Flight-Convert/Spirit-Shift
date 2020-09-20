@@ -1,6 +1,6 @@
 ﻿/*
  * Anthony Wessel
- * Project 1 (Spririt Shift)
+ * Project 1 (Spirit Shift)
  * 
  * A tutorial challenge which requires the player to
  * press a specific set of buttons (such as WASD)

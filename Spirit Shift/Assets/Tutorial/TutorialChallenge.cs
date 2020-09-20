@@ -1,6 +1,6 @@
 ﻿/*
  * Anthony Wessel
- * Project 1 (Spririt Shift)
+ * Project 1 (Spirit Shift)
  * 
  * Base class for tutorial challenges
  */

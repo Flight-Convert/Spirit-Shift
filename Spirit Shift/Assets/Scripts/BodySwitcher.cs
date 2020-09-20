@@ -1,6 +1,6 @@
 ﻿/*
  * Anthony Wessel
- * Project 1 (Spririt Shift)
+ * Project 1 (Spirit Shift)
  * 
  * Swaps player control to different enemies and hides enemies
  * based on which team the player controlled enemy is on

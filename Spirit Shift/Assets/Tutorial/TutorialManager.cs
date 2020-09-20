@@ -1,6 +1,6 @@
 ﻿/*
  * Anthony Wessel
- * Project 1 (Spririt Shift)
+ * Project 1 (Spirit Shift)
  * 
  * Main class for controlling tutorial. Has a list of all of the challenges
  */
