@@ -1,9 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/*
+ * Anthony Wessel
+ * Project 1 (Spririt Shift)
+ * 
+ * A tutorial challenge which requires the player to
+ * switch to a specific body/enemy
+ */
+
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Tutorial/BodySwitch")]
-public class BodySwitch : TutorialPart
+public class BodySwitchChallenge : TutorialChallenge
 {
     public enum Target
     {

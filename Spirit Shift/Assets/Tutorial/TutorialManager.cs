@@ -1,19 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/*
+ * Anthony Wessel
+ * Project 1 (Spririt Shift)
+ * 
+ * Main class for controlling tutorial. Has a list of all of the challenges
+ */
+
+using System.Collections;
 using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
 {
     public bool useTutorial;
 
-    public TutorialPart[] tutorialParts;
+    public TutorialChallenge[] challenges;
 
     void Start()
     {
         // Start the first tutorial part (if it exists)
-        if (useTutorial && tutorialParts.Length > 0)
+        if (useTutorial && challenges.Length > 0)
         {
-            StartCoroutine(waitForTutorialPartCompletion(0));
+            StartCoroutine(waitForChallengeCompletion(0));
         }
 
         // Set to not use the tutorial again when we restart the level
@@ -21,26 +27,26 @@ public class TutorialManager : MonoBehaviour
     }
 
     // Checks every frame to see if the tutorial part has been completed yet
-    IEnumerator waitForTutorialPartCompletion(int tutorialIndex)
+    IEnumerator waitForChallengeCompletion(int challengeIndex)
     {
         // Get the current part
-        TutorialPart part = tutorialParts[tutorialIndex];
+        TutorialChallenge challenge = challenges[challengeIndex];
 
         // Set up the current part
-        part.Init();
-        print(part.prompt);
+        challenge.Init();
+        print(challenge.prompt);
 
         // Update the part until it is completed
-        while(!part.IsCompleted())
+        while(!challenge.IsCompleted())
         {
-            part.UpdateCompletedTasks();
+            challenge.UpdateCompletedTasks();
             yield return null;
         }
 
         // Move on to the next part, or end tutorial
-        tutorialIndex++;
-        if (tutorialIndex != tutorialParts.Length)
-            StartCoroutine(waitForTutorialPartCompletion(tutorialIndex));
+        challengeIndex++;
+        if (challengeIndex != challenges.Length)
+            StartCoroutine(waitForChallengeCompletion(challengeIndex));
         else
             print("Tutorial Completed!");
     }

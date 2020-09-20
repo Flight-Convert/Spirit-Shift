@@ -3,11 +3,9 @@
  * Project 1 (Spririt Shift)
  * 
  * Swaps player control to different enemies and hides enemies
- * based on which team player controlled enemy is on
+ * based on which team the player controlled enemy is on
  */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BodySwitcher : MonoBehaviour

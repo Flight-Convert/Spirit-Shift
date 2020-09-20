@@ -1,9 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/*
+ * Anthony Wessel
+ * Project 1 (Spririt Shift)
+ * 
+ * A tutorial challenge which requires the player to
+ * press a specific set of buttons (such as WASD)
+ */
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Tutorial/ButtonPress")]
-public class ButtonPress : TutorialPart
+public class ButtonPressChallenge : TutorialChallenge
 {
     public KeyCode[] buttons;
     bool[] buttonsPressed;
@@ -29,6 +34,7 @@ public class ButtonPress : TutorialPart
 
         return true;
     }
+
     public override void UpdateCompletedTasks()
     {
         // Check each button to see if it has been pressed
