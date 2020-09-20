@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*
+ * Liam Barrett
+ * Spirit Shift
+ * Keeps the player bounded inside the camera view
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

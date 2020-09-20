@@ -1,4 +1,5 @@
 ﻿/* Broc Edson
+ * Liam Barrett
  * Spirit Shift
  * Makes the enemy follow the player
  */

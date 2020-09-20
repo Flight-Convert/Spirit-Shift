@@ -1,4 +1,5 @@
 ﻿/* Broc Edson
+ * Liam Barrett
  * Spirit Shift
  * Let's the enemy attack the player
  */
