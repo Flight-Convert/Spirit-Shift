@@ -758,6 +758,8 @@ MonoBehaviour:
   enemies:
   - {fileID: 58360512}
   - {fileID: 843168653}
+  - {fileID: 5227574200980075360, guid: 22a87f7d6bbb271418f32d5f9efe7190, type: 3}
+  - {fileID: 3254776386612130995, guid: 7610d259857144f4296a5121bd6183c6, type: 3}
   numEnemies: 10
 --- !u!4 &956617419
 Transform:
