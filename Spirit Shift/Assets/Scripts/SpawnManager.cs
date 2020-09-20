@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿/* Broc Edson
+ * Spirit Shift
+ * Spawns enemies
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

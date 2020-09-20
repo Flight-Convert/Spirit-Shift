@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿/* Broc Edson
+ * Spirit Shift
+ * Makes the enemy follow the player
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;

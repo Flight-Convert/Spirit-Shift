@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿/* Broc Edson
+ * Spirit Shift
+ * Let's the enemy attack the player
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
