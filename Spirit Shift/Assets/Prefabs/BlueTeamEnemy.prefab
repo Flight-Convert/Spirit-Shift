@@ -189,7 +189,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &1338427115771674697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,6 +204,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 200
   speed: 3
+  target: {fileID: 0}
+  turnSpeed: 0
 --- !u!58 &1338427115771674698
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -234,4 +236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   threshold: 2
   delay: 2
+  chargeDelay: 0
+  chargeForce: 0
   fist: {fileID: 1338427115173627981}
+  enemyType: 0

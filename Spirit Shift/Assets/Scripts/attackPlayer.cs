@@ -19,6 +19,7 @@ public class attackPlayer : MonoBehaviour
     public float chargeDelay;
     public float chargeForce;
     public GameObject fist;
+    
 
     // This number specifies the enemy type: 0 for a normal enemy, 1 for a charger, 2 for a shooter
     public int enemyType = 0;
@@ -27,7 +28,7 @@ public class attackPlayer : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb2d = GetComponent<Rigidbody2D>();
-        fist.SetActive(false);
+        fist.SetActive(false); 
     }
 
     // Update is called once per frame
@@ -69,9 +70,16 @@ public class attackPlayer : MonoBehaviour
             if(!justCharged)
             {
                 justCharged = true;
+
+                //Prepare to charge
                 fist.SetActive(true);
+                yield return new WaitForSeconds(delay);
+                
+                //Charge
                 rb2d.AddForce(chargeForce * findDirectionFromPos(player.transform.position), ForceMode2D.Impulse);
                 yield return new WaitForSeconds(delay);
+                
+                //Done Charging
                 fist.SetActive(false);
                 yield return new WaitForSeconds(chargeDelay);
                 justCharged = false;

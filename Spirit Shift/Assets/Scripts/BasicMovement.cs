@@ -8,7 +8,8 @@ using UnityEngine;
 public class BasicMovement : MonoBehaviour
 {
     public float speed;
-    //Animation initialize here
+    
+    //Animation to initialize here
 
     // Start is called before the first frame update
     void Start()
@@ -19,9 +20,10 @@ public class BasicMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Basic Movement variable
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0.0f);
 
-        //animation stuff here
+        //animation stuff goes here
 
         //Movement using basic transform
         transform.position = transform.position + movement * speed * Time.deltaTime;

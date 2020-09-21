@@ -107,7 +107,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &3254776386612130996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,6 +122,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 200
   speed: 5
+  target: {fileID: 9170968760147689424, guid: 558cb2b7e2cf3e24faf50e24c26d2a18, type: 3}
+  turnSpeed: 0
 --- !u!58 &3254776386612130997
 CircleCollider2D:
   m_ObjectHideFlags: 0

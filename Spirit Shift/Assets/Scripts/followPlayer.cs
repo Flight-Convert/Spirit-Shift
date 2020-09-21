@@ -1,5 +1,6 @@
 ﻿/* Broc Edson
  * Liam Barrett
+ * Wolfgang Gross
  * Spirit Shift
  * Makes the enemy follow the player
  */
@@ -16,16 +17,37 @@ public class followPlayer : MonoBehaviour
     public float force;
     public float speed;
 
+    public Transform target;
+    public float turnSpeed;
+
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb2d = GetComponent<Rigidbody2D>();
+        turnSpeed = 7.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+        //Determines where to rotate towards
+        Vector3 targetDirection = target.position - transform.position;
+
+        //Single turn unit
+        float singleUnit = turnSpeed * Time.deltaTime;
+
+        //Rotate the forward vector towards the target direction by one unit
+        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleUnit, 0.0f);
+
+        //Debug raycast to check pointing direction (Scene view)
+        Debug.DrawRay(transform.position, newDirection, Color.red);
+
+        //Calculate rotation a unit closer to the target and applies rotation to object
+        transform.rotation = Quaternion.LookRotation(newDirection);
+
         // enemy in control
         if (GetComponent<BasicMovement>() == null)
         {
