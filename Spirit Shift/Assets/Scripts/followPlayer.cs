@@ -17,7 +17,6 @@ public class followPlayer : MonoBehaviour
     public float force;
     public float speed;
 
-    public Transform target;
     public float turnSpeed;
 
 
@@ -34,13 +33,16 @@ public class followPlayer : MonoBehaviour
     {
         
         //Determines where to rotate towards
-        Vector3 targetDirection = target.position - transform.position;
+        Vector3 targetDirection = player.transform.position - transform.position;
 
         //Single turn unit
         float singleUnit = turnSpeed * Time.deltaTime;
 
         //Rotate the forward vector towards the target direction by one unit
         Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleUnit, 0.0f);
+
+        // Locks it in 2d
+        newDirection = new Vector3(0f, 0f, newDirection.z);
 
         //Debug raycast to check pointing direction (Scene view)
         Debug.DrawRay(transform.position, newDirection, Color.red);

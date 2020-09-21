@@ -24,7 +24,7 @@ public class ProjectileMover : MonoBehaviour
     {
         if(Mathf.Abs(rb2d.velocity.magnitude) < speed)
         {
-            rb2d.AddForce(Vector2.right * moveForce * Time.deltaTime);
+            rb2d.AddForce(transform.right * moveForce * Time.deltaTime);
         }
     }
 

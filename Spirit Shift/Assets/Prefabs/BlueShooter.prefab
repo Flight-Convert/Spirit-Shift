@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3254776386612130995
+--- !u!1 &5469834019942450742
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,41 +8,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3254776386612130985}
-  - component: {fileID: 3254776386612130998}
-  - component: {fileID: 3254776386612130999}
-  - component: {fileID: 3254776386612130996}
-  - component: {fileID: 3254776386612130997}
-  - component: {fileID: 3254776386612130994}
-  m_Layer: 9
-  m_Name: BlueCharger
+  - component: {fileID: 5469834019942450740}
+  - component: {fileID: 5469834019942450743}
+  - component: {fileID: 5469834019942450741}
+  - component: {fileID: 5469834019942450738}
+  - component: {fileID: 5469834019942450739}
+  - component: {fileID: 5469834019942450736}
+  m_Layer: 8
+  m_Name: BlueShooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3254776386612130985
+--- !u!4 &5469834019942450740
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3254776386612130995}
+  m_GameObject: {fileID: 5469834019942450742}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children:
-  - {fileID: 3254776387983802583}
+  - {fileID: 5469834020637577045}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &3254776386612130998
+--- !u!212 &5469834019942450743
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3254776386612130995}
+  m_GameObject: {fileID: 5469834019942450742}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -87,14 +87,14 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &3254776386612130999
+--- !u!50 &5469834019942450741
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3254776386612130995}
+  m_GameObject: {fileID: 5469834019942450742}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -108,13 +108,13 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &3254776386612130996
+--- !u!114 &5469834019942450738
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3254776386612130995}
+  m_GameObject: {fileID: 5469834019942450742}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 338916aac04f5be46acd7c18b973cabd, type: 3}
@@ -123,13 +123,13 @@ MonoBehaviour:
   force: 200
   speed: 5
   turnSpeed: 0
---- !u!58 &3254776386612130997
+--- !u!58 &5469834019942450739
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3254776386612130995}
+  m_GameObject: {fileID: 5469834019942450742}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -139,26 +139,26 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
---- !u!114 &3254776386612130994
+--- !u!114 &5469834019942450736
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3254776386612130995}
+  m_GameObject: {fileID: 5469834019942450742}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9456b52e50e0c0c40b69e6b12a39d6ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  threshold: 5
-  punchDuration: 0.5
+  threshold: 8
+  punchDuration: 0
   attackDelay: 1
-  chargeForce: 15
-  fist: {fileID: 3254776387983802581}
-  bullet: {fileID: 0}
-  enemyType: 1
---- !u!1 &3254776387983802581
+  chargeForce: 0
+  fist: {fileID: 5469834020637577044}
+  bullet: {fileID: 1813697861541037745, guid: d6cc22e737cbc734580bb4ca92161caa, type: 3}
+  enemyType: 2
+--- !u!1 &5469834020637577044
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,8 +166,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3254776387983802583}
-  - component: {fileID: 3254776387983802580}
+  - component: {fileID: 5469834020637577045}
+  - component: {fileID: 5469834020637577042}
   m_Layer: 9
   m_Name: Punch
   m_TagString: Untagged
@@ -175,27 +175,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3254776387983802583
+--- !u!4 &5469834020637577045
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3254776387983802581}
+  m_GameObject: {fileID: 5469834020637577044}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0005, y: 0.0003, z: 0}
-  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
+  m_LocalPosition: {x: -0.085, y: -0.103, z: 0}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children: []
-  m_Father: {fileID: 3254776386612130985}
+  m_Father: {fileID: 5469834019942450740}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &3254776387983802580
+--- !u!212 &5469834020637577042
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3254776387983802581}
+  m_GameObject: {fileID: 5469834020637577044}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -228,7 +228,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 59e8fac8beb35c641b2b44d44a532970, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

@@ -204,7 +204,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 200
   speed: 5
-  target: {fileID: 9170968760147689424, guid: 558cb2b7e2cf3e24faf50e24c26d2a18, type: 3}
   turnSpeed: 0
 --- !u!58 &5227574200980075366
 CircleCollider2D:
@@ -235,8 +234,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   threshold: 5
-  delay: 0.75
-  chargeDelay: 1
+  punchDuration: 0.5
+  attackDelay: 1
   chargeForce: 15
   fist: {fileID: 5227574199533111046}
+  bullet: {fileID: 0}
   enemyType: 1

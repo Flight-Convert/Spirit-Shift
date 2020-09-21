@@ -12,14 +12,15 @@ public class attackPlayer : MonoBehaviour
 {
     private Rigidbody2D rb2d;
     private GameObject player;
-    private bool justCharged;
+    private bool justAttacked;
     private float distance;
     public float threshold;
-    public float delay;
-    public float chargeDelay;
+    public float punchDuration;
+    public float attackDelay;
     public float chargeForce;
     public GameObject fist;
     
+    public GameObject bullet;
 
     // This number specifies the enemy type: 0 for a normal enemy, 1 for a charger, 2 for a shooter
     public int enemyType = 0;
@@ -60,39 +61,63 @@ public class attackPlayer : MonoBehaviour
     {
         if(enemyType == 0)
         {
-            fist.SetActive(true);
-            yield return new WaitForSeconds(delay);
-            fist.SetActive(false);
-            yield return true;
-        }
-        else if(enemyType == 1)
-        {
-            if(!justCharged)
+            if(!justAttacked)
             {
-                justCharged = true;
-
-                //Prepare to charge
+                justAttacked = true;
                 fist.SetActive(true);
-                yield return new WaitForSeconds(delay);
-                
-                //Charge
-                rb2d.AddForce(chargeForce * findDirectionFromPos(player.transform.position), ForceMode2D.Impulse);
-                yield return new WaitForSeconds(delay);
-                
-                //Done Charging
+                yield return new WaitForSeconds(punchDuration);
                 fist.SetActive(false);
-                yield return new WaitForSeconds(chargeDelay);
-                justCharged = false;
+                yield return new WaitForSeconds(attackDelay);
+                justAttacked = false;
+                yield return true;
             }
             else
             {
                 yield return true;
             }
-            
+        }
+        else if(enemyType == 1)
+        {
+            if(!justAttacked)
+            {
+                justAttacked = true;
+
+                //Prepare to charge
+                justAttacked = true;
+                fist.SetActive(true);
+                yield return new WaitForSeconds(punchDuration);
+                
+                //Charge
+                rb2d.AddForce(chargeForce * findDirectionFromPos(player.transform.position), ForceMode2D.Impulse);
+                yield return new WaitForSeconds(attackDelay);
+                
+                //Done Charging
+                yield return new WaitForSeconds(punchDuration);
+                fist.SetActive(false);
+                justAttacked = false;
+                yield return true;
+            }
+            else
+            {
+                yield return true;
+            }
         }
         else
         {
-            yield return true;
+            if (!justAttacked)
+            {
+                justAttacked = true;
+                Vector3 bulletAngle = FindAngle();
+                Debug.Log(bulletAngle.z);
+                Instantiate(bullet, transform.position, Quaternion.Euler(bulletAngle.x, bulletAngle.y, bulletAngle.z));
+                yield return new WaitForSeconds(attackDelay);
+                justAttacked = false;
+                yield return true;
+            } 
+            else
+            {
+                yield return true;
+            }
         }
     }
 
@@ -103,5 +128,33 @@ public class attackPlayer : MonoBehaviour
         direction = new Vector2(direction.normalized.x, direction.normalized.y);
 
         return direction;
+    }
+
+    // This method finds an angle using the position of the player using trigonometry
+    Vector3 FindAngle()
+    {
+        Vector3 rot;
+
+        float xDiff = Mathf.Abs(player.transform.position.x - transform.position.x);
+        float yDiff = Mathf.Abs(player.transform.position.y - transform.position.y);
+
+        if (player.transform.position.x >= transform.position.x && player.transform.position.y >= transform.position.y)
+        {
+            rot = new Vector3(0.0f, 0.0f, Mathf.Atan(yDiff / xDiff) * Mathf.Rad2Deg);
+        }
+        else if (player.transform.position.x < transform.position.x && player.transform.position.y >= transform.position.y)
+        {
+            rot = new Vector3(0.0f, 0.0f, 90f + (Mathf.Atan(xDiff / yDiff) * Mathf.Rad2Deg));
+        }
+        else if (player.transform.position.x <= transform.position.x && player.transform.position.y < transform.position.y)
+        {
+            rot = new Vector3(0.0f, 0.0f, 180f + (Mathf.Atan(yDiff / xDiff) * Mathf.Rad2Deg));
+        }
+        else
+        {
+            rot = new Vector3(0.0f, 0.0f, 270f + (Mathf.Atan(xDiff / yDiff) * Mathf.Rad2Deg));
+        }
+
+        return rot;
     }
 }

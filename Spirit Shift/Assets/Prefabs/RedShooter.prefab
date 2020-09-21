@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1338427115173627981
+--- !u!1 &2435970250459964924
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1338427115173627982}
-  - component: {fileID: 1338427115173627983}
+  - component: {fileID: 2435970250459964925}
+  - component: {fileID: 2435970250459964922}
   m_Layer: 9
   m_Name: Punch
   m_TagString: Untagged
@@ -17,27 +17,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1338427115173627982
+--- !u!4 &2435970250459964925
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1338427115173627981}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1, y: -0.091, z: 0}
+  m_GameObject: {fileID: 2435970250459964924}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.085, y: -0.103, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children: []
-  m_Father: {fileID: 1338427115771674711}
+  m_Father: {fileID: 2435970250783763612}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1338427115173627983
+--- !u!212 &2435970250459964922
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1338427115173627981}
+  m_GameObject: {fileID: 2435970250459964924}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1338427115771674709
+--- !u!1 &2435970250783763614
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,41 +90,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1338427115771674711}
-  - component: {fileID: 1338427115771674710}
-  - component: {fileID: 1338427115771674696}
-  - component: {fileID: 1338427115771674697}
-  - component: {fileID: 1338427115771674698}
-  - component: {fileID: 1338427115771674699}
-  m_Layer: 9
-  m_Name: BlueTeamEnemy
+  - component: {fileID: 2435970250783763612}
+  - component: {fileID: 2435970250783763615}
+  - component: {fileID: 2435970250783763613}
+  - component: {fileID: 2435970250783763610}
+  - component: {fileID: 2435970250783763611}
+  - component: {fileID: 2435970250783763608}
+  m_Layer: 8
+  m_Name: RedShooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1338427115771674711
+--- !u!4 &2435970250783763612
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1338427115771674709}
+  m_GameObject: {fileID: 2435970250783763614}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children:
-  - {fileID: 1338427115173627982}
+  - {fileID: 2435970250459964925}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1338427115771674710
+--- !u!212 &2435970250783763615
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1338427115771674709}
+  m_GameObject: {fileID: 2435970250783763614}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -159,7 +159,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0, g: 0.09511185, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.028783798, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -169,14 +169,14 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &1338427115771674696
+--- !u!50 &2435970250783763613
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1338427115771674709}
+  m_GameObject: {fileID: 2435970250783763614}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -190,28 +190,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1338427115771674697
+--- !u!114 &2435970250783763610
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1338427115771674709}
+  m_GameObject: {fileID: 2435970250783763614}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 338916aac04f5be46acd7c18b973cabd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   force: 200
-  speed: 3
+  speed: 5
   turnSpeed: 0
---- !u!58 &1338427115771674698
+--- !u!58 &2435970250783763611
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1338427115771674709}
+  m_GameObject: {fileID: 2435970250783763614}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -221,22 +221,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
---- !u!114 &1338427115771674699
+--- !u!114 &2435970250783763608
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1338427115771674709}
+  m_GameObject: {fileID: 2435970250783763614}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9456b52e50e0c0c40b69e6b12a39d6ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  threshold: 2
-  punchDuration: 1
+  threshold: 8
+  punchDuration: 0
   attackDelay: 1
   chargeForce: 0
-  fist: {fileID: 1338427115173627981}
-  bullet: {fileID: 0}
-  enemyType: 0
+  fist: {fileID: 2435970250459964924}
+  bullet: {fileID: 1813697861541037745, guid: d6cc22e737cbc734580bb4ca92161caa, type: 3}
+  enemyType: 2
