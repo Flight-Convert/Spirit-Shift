@@ -24,18 +24,28 @@ public class BodySwitchChallenge : TutorialChallenge
     bool switchedToTarget;
     GameObject currentBody;
 
+    TutorialUI tutorialUI;
+
     // Set up the array of booleans
-    public override void Init()
+    public override void Init(GameObject UIHolder)
     {
         // Find the player's current body
         currentBody = FindObjectOfType<BasicMovement>().gameObject;
         switchedToTarget = false;
+
+        tutorialUI = Instantiate(UIPanel, UIHolder.transform).GetComponent<TutorialUI>();
     }
 
     // returns true if this part of the tutorial is completed
     public override bool IsCompleted()
     {
-        return switchedToTarget;
+        if (switchedToTarget)
+        {
+            Destroy(tutorialUI.gameObject);
+            return true;
+        }
+
+        return false;
     }
     public override void UpdateCompletedTasks()
     {

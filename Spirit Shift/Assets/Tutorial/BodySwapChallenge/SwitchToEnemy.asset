@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d508cd0e4fd64d4799f5d5123df07fd, type: 3}
-  m_Name: movement
+  m_Script: {fileID: 11500000, guid: 2f03f667a36eaf9439e4caab79ce8092, type: 3}
+  m_Name: SwitchToEnemy
   m_EditorClassIdentifier: 
-  prompt: You can move around with the WASD keys. Try it now!
-  buttons: 77000000610000007300000064000000
+  UIPanel: {fileID: 7444099791128897348, guid: ddccd7f3f40738d46b213c5fd6b30a12, type: 3}
+  target: 1

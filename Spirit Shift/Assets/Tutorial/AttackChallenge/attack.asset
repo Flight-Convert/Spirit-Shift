@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7ae70eafa45814b897e64e1c4e5dcc, type: 3}
   m_Name: attack
   m_EditorClassIdentifier: 
-  prompt: While possessing an enemy, you can use the Left Mouse Button to attack.
-    Try hitting an enemy
+  UIPanel: {fileID: 8360483918155128855, guid: d4e7dabeae392a44ea9b8d79a0968949, type: 3}

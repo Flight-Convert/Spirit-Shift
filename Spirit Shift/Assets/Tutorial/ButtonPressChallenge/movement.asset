@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f03f667a36eaf9439e4caab79ce8092, type: 3}
-  m_Name: SwitchToEnemy
+  m_Script: {fileID: 11500000, guid: 6d508cd0e4fd64d4799f5d5123df07fd, type: 3}
+  m_Name: movement
   m_EditorClassIdentifier: 
-  prompt: Right click on an enemy to take over their body
-  target: 0
+  UIPanel: {fileID: 9000150686419141787, guid: ce681f388cc12d34b90046079d8c2ea7, type: 3}
+  buttons: 77000000610000007300000064000000

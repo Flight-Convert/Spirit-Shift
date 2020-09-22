@@ -13,16 +13,25 @@ public class AttackChallenge : TutorialChallenge
 {
     bool attacked;
 
+    TutorialUI tutorialUI;
+
     // Initialize the boolean
-    public override void Init()
+    public override void Init(GameObject UIHolder)
     {
         attacked = false;
+
+        tutorialUI = Instantiate(UIPanel, UIHolder.transform).GetComponent<TutorialUI>();
     }
 
     // returns true if this part of the tutorial is completed
     public override bool IsCompleted()
     {
-        return attacked;
+        if (attacked)
+        {
+            Destroy(UIPanel.gameObject);
+            return true;
+        }
+        return false;
     }
 
     public override void UpdateCompletedTasks()

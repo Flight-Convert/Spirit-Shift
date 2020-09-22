@@ -9,9 +9,9 @@ using UnityEngine;
 
 public abstract class TutorialChallenge : ScriptableObject
 {
-    public string prompt;
+    public GameObject UIPanel;
 
-    public abstract void Init();
+    public abstract void Init(GameObject UIHolder);
 
     public abstract bool IsCompleted();
 

@@ -14,6 +14,8 @@ public class TutorialManager : MonoBehaviour
 
     public TutorialChallenge[] challenges;
 
+    public GameObject UIHolder;
+
     void Start()
     {
         // Start the first tutorial part (if it exists)
@@ -33,8 +35,7 @@ public class TutorialManager : MonoBehaviour
         TutorialChallenge challenge = challenges[challengeIndex];
 
         // Set up the current part
-        challenge.Init();
-        print(challenge.prompt);
+        challenge.Init(UIHolder);
 
         // Update the part until it is completed
         while(!challenge.IsCompleted())
@@ -48,6 +49,12 @@ public class TutorialManager : MonoBehaviour
         if (challengeIndex != challenges.Length)
             StartCoroutine(waitForChallengeCompletion(challengeIndex));
         else
-            print("Tutorial Completed!");
+            CompleteTutorial();
+    }
+
+    void CompleteTutorial()
+    {
+        Destroy(UIHolder.transform.parent.gameObject);
+        print("Tutorial Completed!");
     }
 }

@@ -6,6 +6,7 @@
  * press a specific set of buttons (such as WASD)
  */
 using UnityEngine;
+using TMPro;
 
 [CreateAssetMenu(menuName = "Tutorial/ButtonPress")]
 public class ButtonPressChallenge : TutorialChallenge
@@ -13,14 +14,18 @@ public class ButtonPressChallenge : TutorialChallenge
     public KeyCode[] buttons;
     bool[] buttonsPressed;
 
+    TutorialUI tutorialUI;
+
     // Set up the array of booleans
-    public override void Init()
+    public override void Init(GameObject UIHolder)
     {
         buttonsPressed = new bool[buttons.Length];
         for (int i = 0; i < buttons.Length; i++)
         {
             buttonsPressed[i] = false;
         }
+
+        tutorialUI = Instantiate(UIPanel, UIHolder.transform).GetComponent<TutorialUI>();
     }
 
     // returns true if this part of the tutorial is completed
@@ -32,6 +37,7 @@ public class ButtonPressChallenge : TutorialChallenge
             if (!buttonsPressed[i]) return false;
         }
 
+        Destroy(tutorialUI.gameObject);
         return true;
     }
 
@@ -40,7 +46,11 @@ public class ButtonPressChallenge : TutorialChallenge
         // Check each button to see if it has been pressed
         for (int i = 0; i < buttons.Length; i++)
         {
-            if (Input.GetKeyDown(buttons[i])) buttonsPressed[i] = true;
+            if (Input.GetKeyDown(buttons[i]))
+            {
+                buttonsPressed[i] = true;
+                tutorialUI.taskTexts[i].fontStyle = FontStyles.Strikethrough;
+            }
         }
     }
 }
