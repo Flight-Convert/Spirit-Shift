@@ -11,6 +11,8 @@ using UnityEngine;
 public class BodySwitcher : MonoBehaviour
 {
     BasicMovement player;
+    public AudioSource playerAudio;
+    public AudioClip switchSound;
 
     void Start()
     {
@@ -47,6 +49,7 @@ public class BodySwitcher : MonoBehaviour
 
     void switchBodies(GameObject newBody)
     {
+        playerAudio.PlayOneShot(switchSound);
         // Add BasicMovement script to clicked enemy
         BasicMovement newPlayer = newBody.AddComponent<BasicMovement>();
 
