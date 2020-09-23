@@ -19,6 +19,7 @@ public class attackPlayer : MonoBehaviour
     public float attackDelay;
     public float chargeForce;
     public GameObject fist;
+    private bool isControlled;
     
     public GameObject bullet;
 
@@ -86,11 +87,15 @@ public class attackPlayer : MonoBehaviour
                 justAttacked = true;
                 fist.SetActive(true);
                 yield return new WaitForSeconds(punchDuration);
-                
+
                 //Charge
-                rb2d.AddForce(chargeForce * findDirectionFromPos(player.transform.position), ForceMode2D.Impulse);
-                yield return new WaitForSeconds(attackDelay);
+                //If player tag true on controller then attack towards the cursor
                 
+                //Else attack towards player
+                rb2d.AddForce(chargeForce * findDirectionFromPos(player.transform.position), ForceMode2D.Impulse);
+
+                yield return new WaitForSeconds(attackDelay);
+
                 //Done Charging
                 yield return new WaitForSeconds(punchDuration);
                 fist.SetActive(false);
@@ -107,6 +112,10 @@ public class attackPlayer : MonoBehaviour
             if (!justAttacked)
             {
                 justAttacked = true;
+                //If player tag true on controller then attack towards the cursor
+                //if(){}
+                //Else attack towards player
+                //else{
                 Vector3 bulletAngle = FindAngle();
                 Debug.Log(bulletAngle.z);
                 Instantiate(bullet, transform.position, Quaternion.Euler(bulletAngle.x, bulletAngle.y, bulletAngle.z));

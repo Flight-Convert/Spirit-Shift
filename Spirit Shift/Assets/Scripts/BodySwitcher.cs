@@ -11,12 +11,14 @@ using UnityEngine;
 public class BodySwitcher : MonoBehaviour
 {
     BasicMovement player;
+    boundary playerObject;
     public AudioSource playerAudio;
     public AudioClip switchSound;
 
     void Start()
     {
         player = FindObjectOfType<BasicMovement>();
+        playerObject = FindObjectOfType<boundary>();
     }
 
     void Update()
@@ -32,11 +34,27 @@ public class BodySwitcher : MonoBehaviour
             // If we actually clicked on something
             if (hitInfo.collider != null)
             {
-                // If the hit object has an enemy script or is the player body
+                //reference for hit object
                 followPlayer fp = hitInfo.collider.GetComponent<followPlayer>();
-                if (fp != null || hitInfo.collider.CompareTag("Player"))
+
+                // If the hit object has an enemy script or is the player body
+                if (fp != null || hitInfo.collider.CompareTag("Player") || hitInfo.collider.CompareTag("Player Inactive"))
                 {
-                    // Switch to that body
+                    //If hit object has an enemy script
+                    if (fp != null)
+                    {
+                        //set player object tag to player inactive
+                        playerObject.gameObject.tag = "Player Inactive";
+                    }
+                    
+                    //else If the hit object is the inactive player 
+                    else if (hitInfo.collider.CompareTag("Player Inactive"))
+                    {
+                        //Set player object tag to default player
+                        playerObject.gameObject.tag = "Player";
+                    }
+
+                    // Switch to the other body
                     switchBodies(hitInfo.collider.gameObject);
                 }
             }
