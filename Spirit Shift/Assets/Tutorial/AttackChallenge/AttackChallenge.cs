@@ -28,7 +28,7 @@ public class AttackChallenge : TutorialChallenge
     {
         if (attacked)
         {
-            Destroy(UIPanel.gameObject);
+            Destroy(tutorialUI.gameObject);
             return true;
         }
         return false;
