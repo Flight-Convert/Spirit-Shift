@@ -7,6 +7,7 @@
 
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class TutorialManager : MonoBehaviour
     public TutorialChallenge[] challenges;
 
     public GameObject UIHolder;
+
+    public GameObject CompletionPanel;
 
     void Start()
     {
@@ -55,6 +58,12 @@ public class TutorialManager : MonoBehaviour
     void CompleteTutorial()
     {
         Destroy(UIHolder.transform.parent.gameObject);
+        Instantiate(CompletionPanel, FindObjectOfType<Canvas>().transform);
         print("Tutorial Completed!");
+    }
+
+    public void LoadGameLevel()
+    {
+        SceneManager.LoadScene("MainScene");
     }
 }
