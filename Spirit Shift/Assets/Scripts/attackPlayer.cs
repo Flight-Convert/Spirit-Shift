@@ -10,6 +10,7 @@ using UnityEngine;
 
 public class attackPlayer : MonoBehaviour
 {
+    //initialize reference to... 
     private Rigidbody2D rb2d;
     private GameObject player;
     private bool justAttacked;
@@ -36,6 +37,17 @@ public class attackPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Update Is_Controlled bool
+        if(true)
+        {
+            isControlled = true;
+        }
+        else
+        {
+            isControlled = false;
+        }
+
+
         distance = Vector3.Distance(rb2d.transform.position, player.transform.position);
 
         //if player is in enemy body

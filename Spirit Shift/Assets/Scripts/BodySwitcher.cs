@@ -11,14 +11,14 @@ using UnityEngine;
 public class BodySwitcher : MonoBehaviour
 {
     BasicMovement player;
-    boundary playerObject;
+    boundary playerHusk;
     public AudioSource playerAudio;
     public AudioClip switchSound;
 
     void Start()
     {
         player = FindObjectOfType<BasicMovement>();
-        playerObject = FindObjectOfType<boundary>();
+        playerHusk = FindObjectOfType<boundary>();
     }
 
     void Update()
@@ -35,26 +35,29 @@ public class BodySwitcher : MonoBehaviour
             if (hitInfo.collider != null)
             {
                 //reference for hit object
-                followPlayer fp = hitInfo.collider.GetComponent<followPlayer>();
+                followPlayer isEnemy = hitInfo.collider.GetComponent<followPlayer>(); //Only works on enemies
+                boundary isPlayer = hitInfo.collider.GetComponent<boundary>(); //Only works on player
 
-                // If the hit object has an enemy script or is the player body
-                if (fp != null || hitInfo.collider.CompareTag("Player") || hitInfo.collider.CompareTag("Player Inactive"))
+                // If the hit object has an enemy script 
+                if (isEnemy != null) 
                 {
-                    //If hit object has an enemy script
-                    if (fp != null)
-                    {
-                        //set player object tag to player inactive
-                        playerObject.gameObject.tag = "Player Inactive";
-                    }
-                    
-                    //else If the hit object is the inactive player 
-                    else if (hitInfo.collider.CompareTag("Player Inactive"))
-                    {
-                        //Set player object tag to default player
-                        playerObject.gameObject.tag = "Player";
-                    }
+                    //set player object tag to player inactive
+                    Debug.Log("Set player husk to inactive");
+                    playerHusk.gameObject.tag = "Player Inactive";
 
                     // Switch to the other body
+                    Debug.Log("Running Switch_bodies");
+                    switchBodies(hitInfo.collider.gameObject);
+                }
+                //Elif the hit object is the inactive player body
+                else /*if (isPlayer != null)*/
+                {
+                    //set player object tag to player active
+                    Debug.Log("Set player to active");
+                    playerHusk.gameObject.tag = "Player";
+
+                    // Switch to the other body
+                    Debug.Log("Running Switchbodies");
                     switchBodies(hitInfo.collider.gameObject);
                 }
             }
@@ -68,7 +71,7 @@ public class BodySwitcher : MonoBehaviour
     void switchBodies(GameObject newBody)
     {
         playerAudio.PlayOneShot(switchSound);
-        // Add BasicMovement script to clicked enemy
+        // Add BasicMovement script to clicked enemy //Note: can't reattach to player husk for some reason
         BasicMovement newPlayer = newBody.AddComponent<BasicMovement>();
 
         // Destroy old BasicMovement script
