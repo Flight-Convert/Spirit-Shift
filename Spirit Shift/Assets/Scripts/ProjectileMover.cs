@@ -34,4 +34,12 @@ public class ProjectileMover : MonoBehaviour
         Destroy(gameObject);
         yield return true;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player") || other.CompareTag("Player Inactive"))
+        {
+            Debug.Log("Shot Player");
+        }
+    }
 }

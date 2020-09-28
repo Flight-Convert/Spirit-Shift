@@ -70,6 +70,14 @@ public class attackPlayer : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (enemyType == 1 && justAttacked)
+        {
+            Debug.Log("Punched Player");
+        }
+    }
+
     IEnumerator Attack()
     {
         if(enemyType == 0)

@@ -863,6 +863,8 @@ MonoBehaviour:
   - {fileID: 3254776386612130995, guid: 7610d259857144f4296a5121bd6183c6, type: 3}
   - {fileID: 2435970250783763614, guid: 2a458063ed983094192410f8d48d9256, type: 3}
   - {fileID: 5469834019942450742, guid: 1d28562c832548b48b5fedf3a789d5bb, type: 3}
+  initialEnemies: 8
+  waveEnemyMultiplier: 2
   numEnemies: 10
 --- !u!4 &956617419
 Transform:
@@ -1252,6 +1254,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1991928550}
+    - target: {fileID: 1338427115771674698, guid: 34577f02cfc8d3143935d4a823b76426, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1338427115771674709, guid: 34577f02cfc8d3143935d4a823b76426, type: 3}
       propertyPath: m_Name
       value: BlueTeamEnemy
@@ -1369,6 +1375,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1991928550}
+    - target: {fileID: 3704287741846617893, guid: 4fe0ea91084d2c249afabbd1598bc8b5, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fe0ea91084d2c249afabbd1598bc8b5, type: 3}
 --- !u!1001 &9170968759370044726
