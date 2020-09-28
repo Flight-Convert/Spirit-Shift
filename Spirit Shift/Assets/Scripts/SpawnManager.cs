@@ -1,4 +1,5 @@
 ﻿/* Broc Edson
+ * Riley Dalley
  * Spirit Shift
  * Spawns enemies
  */
@@ -11,8 +12,11 @@ public class SpawnManager : MonoBehaviour
     public float xSpawnDistance;
     public float ySpawnDistance;
     public GameObject[] enemies;
+    public int initialEnemies = 8;
+    public int waveEnemyMultiplier = 2;
     public int numEnemies;
     public static bool waveStart = true;
+    private int waveCount = 1;
 
     // Update is called once per frame
     void Update()
@@ -22,11 +26,17 @@ public class SpawnManager : MonoBehaviour
             waveStart = false;
             SpawnEnemies();
         }
+        if (numEnemies == 0)
+        {
+            numEnemies = initialEnemies + (waveCount * waveEnemyMultiplier);
+            waveCount++;
+            waveStart = true;
+        }
     }
 
     void SpawnEnemies()
     {
-        while(numEnemies > 0)
+        for(int i=0; i<numEnemies; i++)
         {
             int side = Random.Range(0, 4) + 1;
             int enemyIndex = Random.Range(0, enemies.Length);
@@ -46,7 +56,11 @@ public class SpawnManager : MonoBehaviour
                     Instantiate(enemies[enemyIndex], new Vector3(-xSpawnDistance, (placeGradient * (ySpawnDistance * 2)) - ySpawnDistance, 0), enemies[enemyIndex].transform.rotation);
                     break;
             }
-            numEnemies--;
         }
+    }
+
+    public void EnemyDestroyed()
+    {
+        numEnemies--;
     }
 }
