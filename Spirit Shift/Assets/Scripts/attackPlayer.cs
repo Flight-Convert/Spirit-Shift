@@ -116,7 +116,7 @@ public class attackPlayer : MonoBehaviour
                 //If player tag true on controller then attack towards the cursor
 
                 //Else attack towards player
-                Vector3 fistAngle = transform.rotation.eulerAngles - FindAngle();
+                Vector3 fistAngle = transform.rotation.eulerAngles - FindAngle(player.transform.position);
                 fist.transform.rotation = Quaternion.Euler(new Vector3(Mathf.Abs(fistAngle.x), Mathf.Abs(fistAngle.y), Mathf.Abs(fistAngle.z) + 90));
                 rb2d.AddForce(chargeForce * findDirectionFromPos(player.transform.position), ForceMode2D.Impulse);
 
@@ -142,7 +142,7 @@ public class attackPlayer : MonoBehaviour
                 //if(){}
                 //Else attack towards player
                 //else{
-                Vector3 bulletAngle = FindAngle();
+                Vector3 bulletAngle = FindAngle(player.transform.position);
                 Debug.Log(bulletAngle.z);
                 Instantiate(bullet, transform.position, Quaternion.Euler(bulletAngle.x, bulletAngle.y, bulletAngle.z));
                 yield return new WaitForSeconds(attackDelay);
@@ -166,22 +166,22 @@ public class attackPlayer : MonoBehaviour
     }
 
     // This method finds an angle using the position of the player using trigonometry
-    Vector3 FindAngle()
+    Vector3 FindAngle(Vector3 pos)
     {
         Vector3 rot;
 
-        float xDiff = Mathf.Abs(player.transform.position.x - transform.position.x);
-        float yDiff = Mathf.Abs(player.transform.position.y - transform.position.y);
+        float xDiff = Mathf.Abs(pos.x - transform.position.x);
+        float yDiff = Mathf.Abs(pos.y - transform.position.y);
 
-        if (player.transform.position.x >= transform.position.x && player.transform.position.y >= transform.position.y)
+        if (pos.x >= transform.position.x && pos.y >= transform.position.y)
         {
             rot = new Vector3(0.0f, 0.0f, Mathf.Atan(yDiff / xDiff) * Mathf.Rad2Deg);
         }
-        else if (player.transform.position.x < transform.position.x && player.transform.position.y >= transform.position.y)
+        else if (pos.x < transform.position.x && pos.y >= transform.position.y)
         {
             rot = new Vector3(0.0f, 0.0f, 90f + (Mathf.Atan(xDiff / yDiff) * Mathf.Rad2Deg));
         }
-        else if (player.transform.position.x <= transform.position.x && player.transform.position.y < transform.position.y)
+        else if (pos.x <= transform.position.x && pos.y < transform.position.y)
         {
             rot = new Vector3(0.0f, 0.0f, 180f + (Mathf.Atan(yDiff / xDiff) * Mathf.Rad2Deg));
         }
