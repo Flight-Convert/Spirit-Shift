@@ -70,11 +70,16 @@ public class attackPlayer : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if ((enemyType == 1) && justAttacked)
+        if (((enemyType == 1) && justAttacked) && 
+            (other.CompareTag("Player") || other.CompareTag("Player Inactive")))
         {
             Debug.Log("Punched Player");
+        }
+        else if (other.CompareTag("Enemy"))
+        {
+            Debug.Log("Punched Enemy");
         }
     }
 
@@ -114,11 +119,21 @@ public class attackPlayer : MonoBehaviour
 
                 //Charge
                 //If player tag true on controller then attack towards the cursor
-
+                if (rb2d.GetComponent<BasicMovement>())
+                {
+                    Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
+                    Debug.Log(mousePos);
+                    Vector3 mouseAngle = transform.rotation.eulerAngles - FindAngle(mousePos);
+                    fist.transform.rotation = Quaternion.Euler(new Vector3(Mathf.Abs(mouseAngle.x), Mathf.Abs(mouseAngle.y), Mathf.Abs(mouseAngle.z) + 90));
+                    rb2d.AddForce(chargeForce * findDirectionFromPos(player.transform.position), ForceMode2D.Impulse);
+                }
                 //Else attack towards player
-                Vector3 fistAngle = transform.rotation.eulerAngles - FindAngle(player.transform.position);
-                fist.transform.rotation = Quaternion.Euler(new Vector3(Mathf.Abs(fistAngle.x), Mathf.Abs(fistAngle.y), Mathf.Abs(fistAngle.z) + 90));
-                rb2d.AddForce(chargeForce * findDirectionFromPos(player.transform.position), ForceMode2D.Impulse);
+                else
+                {
+                    Vector3 fistAngle = transform.rotation.eulerAngles - FindAngle(player.transform.position);
+                    fist.transform.rotation = Quaternion.Euler(new Vector3(Mathf.Abs(fistAngle.x), Mathf.Abs(fistAngle.y), Mathf.Abs(fistAngle.z) + 90));
+                    rb2d.AddForce(chargeForce * findDirectionFromPos(player.transform.position), ForceMode2D.Impulse);
+                }
 
                 yield return new WaitForSeconds(attackDelay);
 
@@ -138,13 +153,23 @@ public class attackPlayer : MonoBehaviour
             if (!justAttacked)
             {
                 justAttacked = true;
-                //If player tag true on controller then attack towards the cursor
-                //if(){}
-                //Else attack towards player
-                //else{
-                Vector3 bulletAngle = FindAngle(player.transform.position);
-                Debug.Log(bulletAngle.z);
-                Instantiate(bullet, transform.position, Quaternion.Euler(bulletAngle.x, bulletAngle.y, bulletAngle.z));
+                //If player tag true on controller then shoot towards the cursor
+                if (rb2d.GetComponent<BasicMovement>())
+                {
+                    Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
+                    Debug.Log(mousePos);
+                    Vector3 bulletAngle = FindAngle(mousePos);
+                    Debug.Log(bulletAngle.z);
+                    Instantiate(bullet, transform.position, Quaternion.Euler(bulletAngle.x, bulletAngle.y, bulletAngle.z));
+                }
+                //Else shoot towards player
+                else
+                {
+                    Vector3 bulletAngle = FindAngle(player.transform.position);
+                    Debug.Log(bulletAngle.z);
+                    Instantiate(bullet, transform.position, Quaternion.Euler(bulletAngle.x, bulletAngle.y, bulletAngle.z));
+                }
+
                 yield return new WaitForSeconds(attackDelay);
                 justAttacked = false;
                 yield return true;

@@ -35,11 +35,15 @@ public class ProjectileMover : MonoBehaviour
         yield return true;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") || other.CompareTag("Player Inactive"))
         {
             Debug.Log("Shot Player");
+        }
+        else if (other.CompareTag("Enemy"))
+        {
+            Debug.Log("Shot Enemy");
         }
     }
 }
