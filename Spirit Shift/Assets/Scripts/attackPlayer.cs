@@ -14,7 +14,7 @@ public class attackPlayer : MonoBehaviour
     private Rigidbody2D rb2d;
     private GameObject player;
     private bool justAttacked;
-    private float distance;
+    public float distance;
     public float threshold;
     public float punchDuration;
     public float attackDelay;
@@ -24,7 +24,7 @@ public class attackPlayer : MonoBehaviour
     
     public GameObject bullet;
 
-    // This number specifies the enemy type: 0 for a normal enemy, 1 for a charger, 2 for a shooter
+    // This number specifies the enemy type: 1 for a charger, 2 for a shooter
     public int enemyType = 0;
 
     private void Start()
@@ -72,7 +72,7 @@ public class attackPlayer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (enemyType == 1 && justAttacked)
+        if ((enemyType == 1) && justAttacked)
         {
             Debug.Log("Punched Player");
         }
@@ -80,10 +80,13 @@ public class attackPlayer : MonoBehaviour
 
     IEnumerator Attack()
     {
+        /*
         if(enemyType == 0)
         {
             if(!justAttacked)
             {
+                //Vector3 enemyAngle = FindAngle();
+                transform.rotation = Quaternion.Euler(FindAngle());
                 justAttacked = true;
                 fist.SetActive(true);
                 yield return new WaitForSeconds(punchDuration);
@@ -97,7 +100,8 @@ public class attackPlayer : MonoBehaviour
                 yield return true;
             }
         }
-        else if(enemyType == 1)
+        */
+        if(enemyType == 1)
         {
             if(!justAttacked)
             {
@@ -110,8 +114,10 @@ public class attackPlayer : MonoBehaviour
 
                 //Charge
                 //If player tag true on controller then attack towards the cursor
-                
+
                 //Else attack towards player
+                Vector3 fistAngle = transform.rotation.eulerAngles - FindAngle();
+                fist.transform.rotation = Quaternion.Euler(new Vector3(Mathf.Abs(fistAngle.x), Mathf.Abs(fistAngle.y), Mathf.Abs(fistAngle.z) + 90));
                 rb2d.AddForce(chargeForce * findDirectionFromPos(player.transform.position), ForceMode2D.Impulse);
 
                 yield return new WaitForSeconds(attackDelay);

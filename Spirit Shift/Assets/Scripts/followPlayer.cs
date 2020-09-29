@@ -19,7 +19,6 @@ public class followPlayer : MonoBehaviour
 
     public float turnSpeed;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -57,7 +56,12 @@ public class followPlayer : MonoBehaviour
 
             if (Mathf.Abs(rb2d.velocity.magnitude) <= speed)
             {
-                rb2d.AddForce(findDirectionFromPos(playerPos) * force * Time.deltaTime);
+                //only add force to shooters when above a certain distance from player
+                if (GetComponent<attackPlayer>().enemyType == 2 && GetComponent<attackPlayer>().distance >= GetComponent<attackPlayer>().threshold
+                    || GetComponent<attackPlayer>().enemyType != 2)
+                {
+                    rb2d.AddForce(findDirectionFromPos(playerPos) * force * Time.deltaTime);
+                }
             }
         }
     }
