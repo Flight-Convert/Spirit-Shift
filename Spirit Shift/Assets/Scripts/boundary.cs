@@ -11,11 +11,15 @@ using UnityEngine;
 public class boundary : MonoBehaviour
 { 
     private Vector2 screenBounds;
+    public bool UseCameraBoundary = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+        if (UseCameraBoundary)
+            screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+        else
+            screenBounds = new Vector2(-20, -20);
     }
 
     // Update is called once per frame

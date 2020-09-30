@@ -7,6 +7,7 @@
  */
 
 using UnityEngine;
+using Cinemachine;
 
 public class BodySwitcher : MonoBehaviour
 {
@@ -14,11 +15,13 @@ public class BodySwitcher : MonoBehaviour
     boundary playerHusk;
     public AudioSource playerAudio;
     public AudioClip switchSound;
+    private CinemachineVirtualCamera followCamera;
 
     void Start()
     {
         player = FindObjectOfType<BasicMovement>();
         playerHusk = FindObjectOfType<boundary>();
+        followCamera = Camera.main.GetComponentInChildren<CinemachineVirtualCamera>();
     }
 
     void Update()
@@ -79,6 +82,9 @@ public class BodySwitcher : MonoBehaviour
 
         // Get reference to new BasicMovement script
         player = newPlayer;
+
+        // Set camera to follow new body
+        followCamera.Follow = player.transform;
         
         // Stop the new bodies current movement
         Rigidbody2D rb2d = newBody.GetComponent<Rigidbody2D>();
