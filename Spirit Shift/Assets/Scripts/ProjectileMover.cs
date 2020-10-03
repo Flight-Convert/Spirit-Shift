@@ -1,4 +1,5 @@
 ﻿/* Broc Edson
+ * Liam Barrett
  * Spirit Shift
  * Moves an object forward and then destroys it
  */
@@ -37,13 +38,14 @@ public class ProjectileMover : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Player Inactive"))
+        if (!rb2d.CompareTag("PlayerBullet") && (other.CompareTag("Player") || other.CompareTag("Player Inactive")))
         {
             Debug.Log("Shot Player");
         }
-        else if (other.CompareTag("Enemy"))
+        else if (rb2d.CompareTag("PlayerBullet") && !other.GetComponent<BasicMovement>() && !other.CompareTag("Player Inactive"))
         {
             Debug.Log("Shot Enemy");
+            Destroy(other.gameObject);
         }
     }
 }

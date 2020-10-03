@@ -159,6 +159,7 @@ MonoBehaviour:
   chargeForce: 0
   fist: {fileID: 5469834020637577044}
   bullet: {fileID: 1813697861541037745, guid: d6cc22e737cbc734580bb4ca92161caa, type: 3}
+  playerBullet: {fileID: 6320279643790481030, guid: 4315bfe4e5e06c246ac0f6c8174648c2, type: 3}
   enemyType: 2
 --- !u!82 &7777032626067690716
 AudioSource:

@@ -23,6 +23,7 @@ public class attackPlayer : MonoBehaviour
     private bool isControlled;
     
     public GameObject bullet;
+    public GameObject playerBullet;
 
     // This number specifies the enemy type: 1 for a charger, 2 for a shooter
     public int enemyType = 0;
@@ -160,7 +161,7 @@ public class attackPlayer : MonoBehaviour
                     Debug.Log(mousePos);
                     Vector3 bulletAngle = FindAngle(mousePos);
                     Debug.Log(bulletAngle.z);
-                    Instantiate(bullet, transform.position, Quaternion.Euler(bulletAngle.x, bulletAngle.y, bulletAngle.z));
+                    Instantiate(playerBullet, transform.position, Quaternion.Euler(bulletAngle.x, bulletAngle.y, bulletAngle.z));
                 }
                 //Else shoot towards player
                 else
