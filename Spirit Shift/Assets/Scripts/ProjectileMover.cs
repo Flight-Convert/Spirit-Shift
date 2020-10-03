@@ -13,11 +13,13 @@ public class ProjectileMover : MonoBehaviour
     public float speed;
     public float destroyDelay;
     private Rigidbody2D rb2d;
+    private PlayerHealth playerHealthScript;
 
     void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
         StartCoroutine(DestroyAfterDelay());
+        playerHealthScript = GameObject.FindGameObjectWithTag("HealthSystem").GetComponent<PlayerHealth>();
     }
 
     // Update is called once per frame
@@ -41,6 +43,7 @@ public class ProjectileMover : MonoBehaviour
         if (!rb2d.CompareTag("PlayerBullet") && (other.CompareTag("Player") || other.CompareTag("Player Inactive")))
         {
             Debug.Log("Shot Player");
+            playerHealthScript.TakeDamage();
         }
         else if (rb2d.CompareTag("PlayerBullet") && !other.GetComponent<BasicMovement>() && !other.CompareTag("Player Inactive"))
         {

@@ -1,4 +1,6 @@
 ﻿/* Broc Edson
+ * Riley Dalley
+ * Liam Barrett
  * Spirit Shift
  * Keeps track of player health
  */
@@ -22,6 +24,11 @@ public class PlayerHealth : MonoBehaviour
     public GameObject gameOverText;
     public AudioSource playerAudio;
     public AudioClip hurt;
+
+    private void Start()
+    {
+        gameOverText.SetActive(false);
+    }
 
     void Update()
     {

@@ -21,6 +21,7 @@ public class attackPlayer : MonoBehaviour
     public float chargeForce;
     public GameObject fist;
     private bool isControlled;
+    private PlayerHealth playerHealthScript;
     
     public GameObject bullet;
     public GameObject playerBullet;
@@ -32,7 +33,8 @@ public class attackPlayer : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb2d = GetComponent<Rigidbody2D>();
-        fist.SetActive(false); 
+        fist.SetActive(false);
+        playerHealthScript = GameObject.FindGameObjectWithTag("HealthSystem").GetComponent<PlayerHealth>();
     }
 
     // Update is called once per frame
@@ -73,14 +75,19 @@ public class attackPlayer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (((enemyType == 1) && justAttacked) && 
-            (other.CompareTag("Player") || other.CompareTag("Player Inactive")))
+        if (enemyType == 1)
         {
-            Debug.Log("Punched Player");
-        }
-        else if (other.CompareTag("Enemy"))
-        {
-            Debug.Log("Punched Enemy");
+            if ((justAttacked) &&
+                (other.CompareTag("Player") || other.CompareTag("Player Inactive")))
+            {
+                Debug.Log("Punched Player");
+                playerHealthScript.TakeDamage();
+            }
+            else if (rb2d.GetComponent<BasicMovement>() && other.CompareTag("Enemy"))
+            {
+                Debug.Log("Punched Enemy");
+                Destroy(other.gameObject);
+            }
         }
     }
 
