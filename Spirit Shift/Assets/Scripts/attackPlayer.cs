@@ -140,7 +140,7 @@ public class attackPlayer : MonoBehaviour
                     Debug.Log(mousePos);
                     Vector3 mouseAngle = transform.rotation.eulerAngles - FindAngle(mousePos);
                     fist.transform.rotation = Quaternion.Euler(new Vector3(Mathf.Abs(mouseAngle.x), Mathf.Abs(mouseAngle.y), Mathf.Abs(mouseAngle.z) + 90));
-                    rb2d.AddForce(chargeForce * findDirectionFromPos(player.transform.position), ForceMode2D.Impulse);
+                    rb2d.AddForce(chargeForce * findDirectionFromPos(mousePos), ForceMode2D.Impulse);
                 }
                 //Else attack towards player
                 else

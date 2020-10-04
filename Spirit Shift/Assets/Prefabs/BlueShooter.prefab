@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5469834019942450736}
   - component: {fileID: 7777032626067690716}
   - component: {fileID: 7959281444403915643}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: BlueShooter
   m_TagString: Enemy
   m_Icon: {fileID: 0}
