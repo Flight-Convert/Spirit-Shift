@@ -34,7 +34,11 @@ public class followPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (FindObjectOfType<PauseMenu>().paused)
+        {
+            rb2d.velocity = new Vector2(0, 0);
+            return;
+        }
         //Determines where to rotate towards
         Vector3 targetDirection = player.transform.position - transform.position;
 

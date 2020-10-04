@@ -46,6 +46,10 @@ public class SpawnManager : MonoBehaviour
     {
         for (int i = 0; i < spawningEnemies; i++)
         {
+            while (FindObjectOfType<PauseMenu>().paused)
+            {
+                yield return null;
+            }
             int side = Random.Range(0, 4) + 1;
             int enemyIndex = Random.Range(0, enemies.Length);
             float placeGradient = Random.Range(0f, 1f);

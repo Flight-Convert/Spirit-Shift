@@ -29,10 +29,11 @@ public class BodySwitcher : MonoBehaviour
 
     void Update()
     {
+        if (FindObjectOfType<PauseMenu>().paused) return;
         //SBehavior.gameObject.GetComponent<>;
 
         //SBehavior.GetComponent<SwitchBehavior>().getBehavior();
-        
+
         // If right mouse button is clicked
         if (Input.GetMouseButtonDown(1))
         {

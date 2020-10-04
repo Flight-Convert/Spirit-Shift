@@ -46,6 +46,7 @@ public class attackPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (FindObjectOfType<PauseMenu>().paused) return;
         //Update Is_Controlled bool
         if(true)
         {
