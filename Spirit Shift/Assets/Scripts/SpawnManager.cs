@@ -17,8 +17,13 @@ public class SpawnManager : MonoBehaviour
     public int numEnemies;
     private int spawningEnemies = 10;
     public float spawnDelay = 1f;
-    public static bool waveStart = true;
+    public static bool waveStart;
     private int waveCount = 1;
+
+    private void Start()
+    {
+        waveStart = true;    
+    }
 
     // Update is called once per frame
     void Update()
