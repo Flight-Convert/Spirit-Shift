@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5469834019942450739}
   - component: {fileID: 5469834019942450736}
   - component: {fileID: 7777032626067690716}
+  - component: {fileID: 7959281444403915643}
   m_Layer: 8
   m_Name: BlueShooter
   m_TagString: Enemy
@@ -152,7 +153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9456b52e50e0c0c40b69e6b12a39d6ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 0
   threshold: 15.04
   punchDuration: 0
   attackDelay: 1
@@ -257,6 +257,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7959281444403915643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5469834019942450742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 556acca5aac425e4ba1ae6cbdf723a48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentBehavior: 0
+  previousBehavior: 0
 --- !u!1 &5469834020637577044
 GameObject:
   m_ObjectHideFlags: 0

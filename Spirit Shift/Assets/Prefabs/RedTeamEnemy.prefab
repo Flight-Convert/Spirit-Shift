@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 3704287741846617893}
   - component: {fileID: 3704287741846617894}
   - component: {fileID: -6424759836969145406}
+  - component: {fileID: 8415920182877484964}
   m_Layer: 8
   m_Name: RedTeamEnemy
   m_TagString: Untagged
@@ -234,13 +235,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9456b52e50e0c0c40b69e6b12a39d6ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 0
   threshold: 2
   punchDuration: 1
   attackDelay: 1
   chargeForce: 0
   fist: {fileID: 3704287741097195074}
   bullet: {fileID: 0}
+  playerBullet: {fileID: 0}
   enemyType: 0
 --- !u!82 &-6424759836969145406
 AudioSource:
@@ -338,3 +339,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8415920182877484964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3704287741846617888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 556acca5aac425e4ba1ae6cbdf723a48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentBehavior: 0
+  previousBehavior: 0

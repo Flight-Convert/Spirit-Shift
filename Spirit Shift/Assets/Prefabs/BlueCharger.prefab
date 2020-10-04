@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3254776386612130997}
   - component: {fileID: 3254776386612130994}
   - component: {fileID: -6044866634909491094}
+  - component: {fileID: 8045369500547353216}
   m_Layer: 9
   m_Name: BlueCharger
   m_TagString: Enemy
@@ -152,13 +153,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9456b52e50e0c0c40b69e6b12a39d6ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 0
   threshold: 5
   punchDuration: 0.5
   attackDelay: 1
   chargeForce: 15
   fist: {fileID: 3254776387983802581}
   bullet: {fileID: 0}
+  playerBullet: {fileID: 0}
   enemyType: 1
 --- !u!82 &-6044866634909491094
 AudioSource:
@@ -256,6 +257,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8045369500547353216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3254776386612130995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 556acca5aac425e4ba1ae6cbdf723a48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentBehavior: 0
+  previousBehavior: 0
 --- !u!1 &3254776387983802581
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ using Cinemachine;
 
 public class BodySwitcher : MonoBehaviour
 {
+    SwitchBehavior SBehavior;
     BasicMovement player;
     boundary playerHusk;
     public AudioSource playerAudio;
@@ -19,6 +20,7 @@ public class BodySwitcher : MonoBehaviour
 
     void Start()
     {
+        
         player = FindObjectOfType<BasicMovement>();
         playerHusk = FindObjectOfType<boundary>();
         followCamera = Camera.main.GetComponentInChildren<CinemachineVirtualCamera>();
@@ -26,6 +28,11 @@ public class BodySwitcher : MonoBehaviour
 
     void Update()
     {
+
+        //SBehavior.gameObject.GetComponent<>;
+
+        //SBehavior.GetComponent<SwitchBehavior>().getBehavior();
+        
         // If right mouse button is clicked
         if (Input.GetMouseButtonDown(1))
         {
@@ -38,31 +45,71 @@ public class BodySwitcher : MonoBehaviour
             if (hitInfo.collider != null)
             {
                 //reference for hit object
-                followPlayer isEnemy = hitInfo.collider.GetComponent<followPlayer>(); //Only works on enemies
-                boundary isPlayer = hitInfo.collider.GetComponent<boundary>(); //Only works on player
+                SBehavior = hitInfo.collider.GetComponent<SwitchBehavior>(); //Checks if is switchable
+                //followPlayer isEnemy = hitInfo.collider.GetComponent<followPlayer>(); //Only works on enemies
+                //boundary isPlayer = hitInfo.collider.GetComponent<boundary>(); //Only works on player
 
-                // If the hit object has an enemy script 
-                if (isEnemy != null) 
+                // If the hit object is switchable 
+                if (SBehavior != null) 
                 {
-                    //set player object tag to player inactive
+                    //prep: set player object tag to player inactive
                     Debug.Log("Set player husk to inactive");
-                    //playerHusk.gameObject.tag = "Player Inactive";
+
+                    //set husk tag to inactive
+                    playerHusk.gameObject.tag = "Player Inactive";
+                    
+                    //reference SBehavior to change the objects behavior to 3 (inactive)
+                    playerHusk.GetComponent<SwitchBehavior>().setBehavior(3);
+                    
+                    //Check that you correctly set behavior
+                    Debug.Log("Current Behavior: " + SBehavior.GetComponent<SwitchBehavior>().getBehavior());
+
+                    //If current is player
+                    if (SBehavior.GetComponent<SwitchBehavior>().getBehavior() == 3)
+                    {
+                        //currentBehavior = 3 //(player inactive)
+                        Debug.Log("'this' -> means the player husk!");
+
+                        Debug.Log("Running Switch_bodies");
+                        switchBodies(hitInfo.collider.gameObject);
+
+                        //currentBehavior = 2 //(player active)
+                        playerHusk.GetComponent<SwitchBehavior>().setBehavior(2);
+                    }
+
+                    //If current is enemy
+                    if (SBehavior.GetComponent<SwitchBehavior>().getBehavior() == 1)
+                    {
+                        //currentBehavior = 1 //(enemy)
+                        Debug.Log("'this' -> means the enemy!");
+
+                        SBehavior.GetComponent<SwitchBehavior>().setBehavior(2);
+                        Debug.Log("New Behavior: " + SBehavior.GetComponent<SwitchBehavior>().getBehavior());
+
+                        Debug.Log("Running Switch_bodies");
+                        switchBodies(hitInfo.collider.gameObject);
+
+                        //currentBehavior = 2 //(player active)
+                        //playerHusk.GetComponent<SwitchBehavior>().setBehavior(2);
+                        
+                    }
 
                     // Switch to the other body
-                    Debug.Log("Running Switch_bodies");
-                    switchBodies(hitInfo.collider.gameObject);
+                    //Debug.Log("Running Switch_bodies");
+                    //switchBodies(hitInfo.collider.gameObject);
+
                 }
                 //Elif the hit object is the inactive player body
-                else /*if (isPlayer != null)*/
-                {
-                    //set player object tag to player active
-                    Debug.Log("Set player to active");
-                    playerHusk.gameObject.tag = "Player";
+                //else /*if (isPlayer != null)*/
+                //{
+                 //   //set player object tag to player active
+                 //   Debug.Log("Set player to active");
+                 //   playerHusk.gameObject.tag = "Player";
 
                     // Switch to the other body
-                    Debug.Log("Running Switchbodies");
-                    switchBodies(hitInfo.collider.gameObject);
-                }
+  //                  Debug.Log("Running Switchbodies");
+    //                switchBodies(hitInfo.collider.gameObject);
+      //          }
             }
         }
 
@@ -84,6 +131,7 @@ public class BodySwitcher : MonoBehaviour
         player = newPlayer;
 
         // Set camera to follow new body
+        //NullReferenceException: Object Reference not set to an instance of an object
         followCamera.Follow = player.transform;
         
         // Stop the new bodies current movement

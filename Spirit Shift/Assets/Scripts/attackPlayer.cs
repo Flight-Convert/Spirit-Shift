@@ -52,7 +52,7 @@ public class attackPlayer : MonoBehaviour
             isControlled = false;
         }
 
-
+        //NullReferenceException: Object reference not set to an instance of an object
         distance = Vector3.Distance(rb2d.transform.position, player.transform.position);
 
         //if player is in enemy body
