@@ -1,5 +1,6 @@
 ﻿/*
  * Anthony Wessel
+ * Wolfgang Gross
  * Project 1 (Spirit Shift)
  * 
  * Swaps player control to different enemies and hides enemies
@@ -28,7 +29,6 @@ public class BodySwitcher : MonoBehaviour
 
     void Update()
     {
-
         //SBehavior.gameObject.GetComponent<>;
 
         //SBehavior.GetComponent<SwitchBehavior>().getBehavior();
@@ -120,6 +120,8 @@ public class BodySwitcher : MonoBehaviour
 
     void switchBodies(GameObject newBody)
     {
+        FindObjectOfType<BasicMovement>().GetComponent<SwitchBehavior>().setBehavior(1);
+
         playerAudio.PlayOneShot(switchSound);
         // Add BasicMovement script to clicked enemy //Note: can't reattach to player husk for some reason
         BasicMovement newPlayer = newBody.AddComponent<BasicMovement>();
