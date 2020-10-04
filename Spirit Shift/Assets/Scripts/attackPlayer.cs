@@ -14,7 +14,7 @@ public class attackPlayer : MonoBehaviour
     private Rigidbody2D rb2d;
     private GameObject player;
     private bool justAttacked;
-    public float distance;
+    public static float distance = 0f;
     public float threshold;
     public float punchDuration;
     public float attackDelay;
@@ -22,6 +22,7 @@ public class attackPlayer : MonoBehaviour
     public GameObject fist;
     private bool isControlled;
     private PlayerHealth playerHealthScript;
+    private SpawnManager spawnManager;
     
     public GameObject bullet;
     public GameObject playerBullet;
@@ -32,6 +33,7 @@ public class attackPlayer : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        spawnManager = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManager>();
         rb2d = GetComponent<Rigidbody2D>();
         fist.SetActive(false);
         playerHealthScript = GameObject.FindGameObjectWithTag("HealthSystem").GetComponent<PlayerHealth>();
@@ -87,6 +89,7 @@ public class attackPlayer : MonoBehaviour
             {
                 Debug.Log("Punched Enemy");
                 Destroy(other.gameObject);
+                spawnManager.EnemyDestroyed();
             }
         }
     }

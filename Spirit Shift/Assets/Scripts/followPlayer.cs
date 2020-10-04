@@ -23,6 +23,10 @@ public class followPlayer : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null)
+        {
+            GameObject.FindGameObjectWithTag("Player Inactive");
+        }
         rb2d = GetComponent<Rigidbody2D>();
         turnSpeed = 7.0f;
     }
@@ -57,7 +61,8 @@ public class followPlayer : MonoBehaviour
             if (Mathf.Abs(rb2d.velocity.magnitude) <= speed)
             {
                 //only add force to shooters when above a certain distance from player
-                if (GetComponent<attackPlayer>().enemyType == 2 && GetComponent<attackPlayer>().distance >= GetComponent<attackPlayer>().threshold
+                attackPlayer attack = GetComponent<attackPlayer>();
+                if (GetComponent<attackPlayer>().enemyType == 2 && attackPlayer.distance >= GetComponent<attackPlayer>().threshold
                     || GetComponent<attackPlayer>().enemyType != 2)
                 {
                     rb2d.AddForce(findDirectionFromPos(playerPos) * force * Time.deltaTime);

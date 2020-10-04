@@ -46,7 +46,7 @@ public class BodySwitcher : MonoBehaviour
                 {
                     //set player object tag to player inactive
                     Debug.Log("Set player husk to inactive");
-                    playerHusk.gameObject.tag = "Player Inactive";
+                    //playerHusk.gameObject.tag = "Player Inactive";
 
                     // Switch to the other body
                     Debug.Log("Running Switch_bodies");

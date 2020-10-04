@@ -15,6 +15,8 @@ public class SpawnManager : MonoBehaviour
     public int initialEnemies = 8;
     public int waveEnemyMultiplier = 2;
     public int numEnemies;
+    private int spawningEnemies = 10;
+    public float spawnDelay = 1f;
     public static bool waveStart = true;
     private int waveCount = 1;
 
@@ -24,19 +26,20 @@ public class SpawnManager : MonoBehaviour
         if(waveStart)
         {
             waveStart = false;
-            SpawnEnemies();
+            StartCoroutine(SpawnEnemies());
         }
         if (numEnemies == 0)
         {
-            numEnemies = initialEnemies + (waveCount * waveEnemyMultiplier);
+            spawningEnemies = initialEnemies + (waveCount * waveEnemyMultiplier);
+            numEnemies = spawningEnemies;
             waveCount++;
             waveStart = true;
         }
     }
 
-    void SpawnEnemies()
+    IEnumerator SpawnEnemies()
     {
-        for(int i=0; i<numEnemies; i++)
+        for (int i = 0; i < spawningEnemies; i++)
         {
             int side = Random.Range(0, 4) + 1;
             int enemyIndex = Random.Range(0, enemies.Length);
@@ -56,7 +59,9 @@ public class SpawnManager : MonoBehaviour
                     Instantiate(enemies[enemyIndex], new Vector3(-xSpawnDistance, (placeGradient * (ySpawnDistance * 2)) - ySpawnDistance, 0), enemies[enemyIndex].transform.rotation);
                     break;
             }
+            yield return new WaitForSeconds(spawnDelay);
         }
+        yield return true;
     }
 
     public void EnemyDestroyed()

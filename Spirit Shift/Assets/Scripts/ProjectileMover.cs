@@ -45,7 +45,7 @@ public class ProjectileMover : MonoBehaviour
             Debug.Log("Shot Player");
             playerHealthScript.TakeDamage();
         }
-        else if (rb2d.CompareTag("PlayerBullet") && !other.GetComponent<BasicMovement>() && !other.CompareTag("Player Inactive"))
+        else if (rb2d.CompareTag("PlayerBullet") && !other.GetComponent<BasicMovement>()/*  && !other.CompareTag("Player Inactive")*/)
         {
             Debug.Log("Shot Enemy");
             Destroy(other.gameObject);
