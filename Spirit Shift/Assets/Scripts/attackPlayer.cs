@@ -33,6 +33,10 @@ public class attackPlayer : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player Inactive");
+        }
         spawnManager = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManager>();
         rb2d = GetComponent<Rigidbody2D>();
         fist.SetActive(false);

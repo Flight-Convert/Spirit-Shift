@@ -25,7 +25,7 @@ public class followPlayer : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         if (player == null)
         {
-            GameObject.FindGameObjectWithTag("Player Inactive");
+            player = GameObject.FindGameObjectWithTag("Player Inactive");
         }
         rb2d = GetComponent<Rigidbody2D>();
         turnSpeed = 7.0f;
