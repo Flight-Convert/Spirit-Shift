@@ -39,18 +39,7 @@ public class SpawnManager : MonoBehaviour
             waveStart = false;
             StartCoroutine(SpawnEnemies());
         }
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
         if ((Time.time >= targetTime) && timing)
-=======
->>>>>>> Stashed changes
-        if (numEnemies == 1)
-        {
-            //Set player hitbox either to be enabled to attack, or ON until last enemy dead
-        }
-        if (numEnemies == 0)
->>>>>>> 8ac9e8e90073e2cba79792c5039b181ece52fb3e
         {
             timing = false;
             spawningEnemies = initialEnemies + (waveCount * waveEnemyMultiplier);
