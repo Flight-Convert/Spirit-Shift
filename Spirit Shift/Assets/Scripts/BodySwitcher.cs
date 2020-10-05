@@ -89,28 +89,9 @@ public class BodySwitcher : MonoBehaviour
 
                         Debug.Log("Running Switch_bodies");
                         switchBodies(hitInfo.collider.gameObject);
-
-                        //currentBehavior = 2 //(player active)
-                        //playerHusk.GetComponent<SwitchBehavior>().setBehavior(2);
                         
                     }
-
-                    // Switch to the other body
-                    //Debug.Log("Running Switch_bodies");
-                    //switchBodies(hitInfo.collider.gameObject);
-
                 }
-                //Elif the hit object is the inactive player body
-                //else /*if (isPlayer != null)*/
-                //{
-                 //   //set player object tag to player active
-                 //   Debug.Log("Set player to active");
-                 //   playerHusk.gameObject.tag = "Player";
-
-                    // Switch to the other body
-  //                  Debug.Log("Running Switchbodies");
-    //                switchBodies(hitInfo.collider.gameObject);
-      //          }
             }
         }
 
@@ -124,7 +105,7 @@ public class BodySwitcher : MonoBehaviour
         FindObjectOfType<BasicMovement>().GetComponent<SwitchBehavior>().setBehavior(1);
 
         playerAudio.PlayOneShot(switchSound);
-        // Add BasicMovement script to clicked enemy //Note: can't reattach to player husk for some reason
+        // Add BasicMovement script to clicked enemy 
         BasicMovement newPlayer = newBody.AddComponent<BasicMovement>();
 
         // Destroy old BasicMovement script

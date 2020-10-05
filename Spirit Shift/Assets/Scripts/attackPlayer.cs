@@ -20,7 +20,7 @@ public class attackPlayer : MonoBehaviour
     public float attackDelay;
     public float chargeForce;
     public GameObject fist;
-    private bool isControlled;
+    //private bool isControlled;
     private PlayerHealth playerHealthScript;
     private SpawnManager spawnManager;
     
@@ -47,15 +47,6 @@ public class attackPlayer : MonoBehaviour
     void Update()
     {
         if (FindObjectOfType<PauseMenu>().paused) return;
-        //Update Is_Controlled bool
-        if(true)
-        {
-            isControlled = true;
-        }
-        else
-        {
-            isControlled = false;
-        }
 
         //NullReferenceException: Object reference not set to an instance of an object
         distance = Vector3.Distance(rb2d.transform.position, player.transform.position);
@@ -101,30 +92,15 @@ public class attackPlayer : MonoBehaviour
 
     IEnumerator Attack()
     {
-        /*
-        if(enemyType == 0)
-        {
-            if(!justAttacked)
-            {
-                //Vector3 enemyAngle = FindAngle();
-                transform.rotation = Quaternion.Euler(FindAngle());
-                justAttacked = true;
-                fist.SetActive(true);
-                yield return new WaitForSeconds(punchDuration);
-                fist.SetActive(false);
-                yield return new WaitForSeconds(attackDelay);
-                justAttacked = false;
-                yield return true;
-            }
-            else
-            {
-                yield return true;
-            }
-        }
-        */
         if(enemyType == 1)
         {
-            if(!justAttacked)
+            if (spawnManager.OneEnemyRemaining())
+            {
+                //Give a second or two before killing the last (unkillable) enemy
+                yield return new WaitForSeconds(2.0f);
+                Destroy(gameObject);
+            }
+            if (!justAttacked)
             {
                 justAttacked = true;
 
@@ -166,6 +142,12 @@ public class attackPlayer : MonoBehaviour
         }
         else
         {
+            if (spawnManager.OneEnemyRemaining())
+            {
+                //Give a second or two before killing the last (unkillable) enemy
+                yield return new WaitForSeconds(2.0f);
+                Destroy(gameObject);
+            }
             if (!justAttacked)
             {
                 justAttacked = true;

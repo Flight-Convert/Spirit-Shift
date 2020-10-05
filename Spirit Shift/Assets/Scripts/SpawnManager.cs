@@ -33,6 +33,10 @@ public class SpawnManager : MonoBehaviour
             waveStart = false;
             StartCoroutine(SpawnEnemies());
         }
+        if (numEnemies == 1)
+        {
+            //Set player hitbox either to be enabled to attack, or ON until last enemy dead
+        }
         if (numEnemies == 0)
         {
             spawningEnemies = initialEnemies + (waveCount * waveEnemyMultiplier);
@@ -71,6 +75,14 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitForSeconds(spawnDelay);
         }
         yield return true;
+    }
+
+    public bool OneEnemyRemaining()
+    {
+        if (numEnemies == 1)
+            return true;
+        else
+            return false;
     }
 
     public void EnemyDestroyed()

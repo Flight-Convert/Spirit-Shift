@@ -8,10 +8,10 @@ using UnityEngine;
 
 public class SwitchBehavior : MonoBehaviour
 {
-    public int currentBehavior = 0; //0 = unassigned, 1 = enemy, 
+    private int currentBehavior = 0; //0 = unassigned, 1 = enemy, 
                                     //2 = player, 3 = player-inactive
 
-    public int previousBehavior = 0; //Check what the unit was before
+    private int previousBehavior = 0; //Check what the unit was before
 
     // Start is called before the first frame update
     void Start()
