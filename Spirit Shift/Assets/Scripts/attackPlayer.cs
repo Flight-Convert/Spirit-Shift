@@ -14,7 +14,7 @@ public class attackPlayer : MonoBehaviour
     private Rigidbody2D rb2d;
     private GameObject player;
     private bool justAttacked;
-    public static float distance = 0f;
+    [HideInInspector] public static float distance = 0f;
     public float threshold;
     public float punchDuration;
     public float attackDelay;

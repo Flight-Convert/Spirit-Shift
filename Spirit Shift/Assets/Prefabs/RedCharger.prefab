@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 5227574200980075361}
   - component: {fileID: -4312233655495377530}
   - component: {fileID: 5261512745906829900}
+  - component: {fileID: -6102088043974593294}
   m_Layer: 8
   m_Name: RedCharger
   m_TagString: Enemy
@@ -351,5 +352,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 556acca5aac425e4ba1ae6cbdf723a48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentBehavior: 0
-  previousBehavior: 0
+--- !u!114 &-6102088043974593294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5227574200980075360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2108add76f0f1a04fae722e4d49dc7a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

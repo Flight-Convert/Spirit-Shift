@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 2435970250783763608}
   - component: {fileID: 5642983490014559282}
   - component: {fileID: 1735493582834971876}
+  - component: {fileID: -3370625507934905457}
   m_Layer: 8
   m_Name: RedShooter
   m_TagString: Enemy
@@ -351,5 +352,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 556acca5aac425e4ba1ae6cbdf723a48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentBehavior: 0
-  previousBehavior: 0
+--- !u!114 &-3370625507934905457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2435970250783763614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2108add76f0f1a04fae722e4d49dc7a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

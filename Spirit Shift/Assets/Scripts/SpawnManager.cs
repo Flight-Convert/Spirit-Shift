@@ -23,7 +23,7 @@ public class SpawnManager : MonoBehaviour
     public static bool waveStart;
     public float additionalWaveTime = 5f;
     private int waveCount = 1;
-    private float targetTime;
+    [HideInInspector]public float targetTime;
     private bool timing = false;
 
     private void Start()
@@ -93,14 +93,6 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitForSeconds(spawnDelay);
         }
         yield return true;
-    }
-
-    public bool OneEnemyRemaining()
-    {
-        if (numEnemies == 1)
-            return true;
-        else
-            return false;
     }
 
     public void EnemyDestroyed()
