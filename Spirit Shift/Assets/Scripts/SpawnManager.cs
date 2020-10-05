@@ -6,23 +6,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpawnManager : MonoBehaviour
 {
     public float xSpawnDistance;
     public float ySpawnDistance;
     public GameObject[] enemies;
+    public Text waveText;
     public int initialEnemies = 8;
     public int waveEnemyMultiplier = 2;
     public int numEnemies;
     private int spawningEnemies = 10;
     public float spawnDelay = 1f;
+    public float initialWaveTime = 3f;
     public static bool waveStart;
+    public float additionalWaveTime = 5f;
     private int waveCount = 1;
+    private float targetTime;
+    private bool timing = false;
 
     private void Start()
     {
-        waveStart = true;    
+        waveStart = true;
     }
 
     // Update is called once per frame
@@ -33,21 +39,44 @@ public class SpawnManager : MonoBehaviour
             waveStart = false;
             StartCoroutine(SpawnEnemies());
         }
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+        if ((Time.time >= targetTime) && timing)
+=======
+>>>>>>> Stashed changes
         if (numEnemies == 1)
         {
             //Set player hitbox either to be enabled to attack, or ON until last enemy dead
         }
         if (numEnemies == 0)
+>>>>>>> 8ac9e8e90073e2cba79792c5039b181ece52fb3e
         {
+            timing = false;
             spawningEnemies = initialEnemies + (waveCount * waveEnemyMultiplier);
             numEnemies = spawningEnemies;
             waveCount++;
             waveStart = true;
         }
+        if(timing)
+        {
+            waveText.text = "Wave " + waveCount + ": " + (int)(targetTime - Time.time) + " s";
+        }
     }
 
     IEnumerator SpawnEnemies()
     {
+        if(waveCount == 1)
+        {
+            waveText.text = "Begin!";
+        }
+        else
+        {
+            waveText.text = "Wave Complete!";
+        }
+        yield return new WaitForSeconds(initialWaveTime);
+        timing = true;
+        targetTime = Time.time + ((initialEnemies + (waveCount * waveEnemyMultiplier)) * spawnDelay) + additionalWaveTime;
         for (int i = 0; i < spawningEnemies; i++)
         {
             while (FindObjectOfType<PauseMenu>().paused)
