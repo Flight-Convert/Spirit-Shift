@@ -94,12 +94,6 @@ public class attackPlayer : MonoBehaviour
     {
         if(enemyType == 1)
         {
-            if (spawnManager.OneEnemyRemaining())
-            {
-                //Give a second or two before killing the last (unkillable) enemy
-                yield return new WaitForSeconds(2.0f);
-                Destroy(gameObject);
-            }
             if (!justAttacked)
             {
                 justAttacked = true;
@@ -142,12 +136,6 @@ public class attackPlayer : MonoBehaviour
         }
         else
         {
-            if (spawnManager.OneEnemyRemaining())
-            {
-                //Give a second or two before killing the last (unkillable) enemy
-                yield return new WaitForSeconds(2.0f);
-                Destroy(gameObject);
-            }
             if (!justAttacked)
             {
                 justAttacked = true;

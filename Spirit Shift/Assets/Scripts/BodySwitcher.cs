@@ -95,6 +95,13 @@ public class BodySwitcher : MonoBehaviour
             }
         }
 
+        /*if (spawnManager.OneEnemyRemaining())
+        {
+            //Give a second or two before killing the last (unkillable) enemy
+            yield return new WaitForSeconds(2.0f);
+            Destroy(gameObject);
+        }*/
+
         if (Input.GetKeyDown(KeyCode.B)) showBlueTeam();
         if (Input.GetKeyDown(KeyCode.R)) showRedTeam();
         if (Input.GetKeyDown(KeyCode.G)) showBothTeams();
