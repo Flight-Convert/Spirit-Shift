@@ -435,8 +435,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 556acca5aac425e4ba1ae6cbdf723a48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentBehavior: 0
-  previousBehavior: 0
 --- !u!61 &907727375
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -810,10 +808,14 @@ MonoBehaviour:
   xSpawnDistance: 0
   ySpawnDistance: 0
   enemies: []
+  waveText: {fileID: 1592079196}
   initialEnemies: 0
   waveEnemyMultiplier: 0
   numEnemies: 0
   spawnDelay: 10000
+  initialWaveTime: 3
+  additionalWaveTime: 5
+  targetTime: 0
 --- !u!4 &1377322370
 Transform:
   m_ObjectHideFlags: 0

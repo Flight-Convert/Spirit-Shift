@@ -8,6 +8,7 @@ public class DestroyOnWaveEnd : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (FindObjectOfType<TutorialManager>()) Destroy(this);
         targetTime = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManager>().targetTime;
     }
 
