@@ -13,7 +13,7 @@ public class attackPlayer : MonoBehaviour
     //initialize reference to... 
     private Rigidbody2D rb2d;
     private GameObject player;
-    public bool justAttacked;
+    [HideInInspector]public bool justAttacked;
     [HideInInspector] public static float distance = 0f;
     public float threshold;
     public float punchDuration;

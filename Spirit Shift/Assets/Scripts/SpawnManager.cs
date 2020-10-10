@@ -1,5 +1,6 @@
 ﻿/* Broc Edson
  * Riley Dalley
+ * Liam Barrett
  * Spirit Shift
  * Spawns enemies
  */
@@ -25,10 +26,12 @@ public class SpawnManager : MonoBehaviour
     private int waveCount = 1;
     [HideInInspector]public float targetTime;
     private bool timing = false;
+    [HideInInspector] PlayerHealth playerHealthScript;
 
     private void Start()
     {
         waveStart = true;
+        playerHealthScript = GameObject.FindGameObjectWithTag("HealthSystem").GetComponent<PlayerHealth>();
     }
 
     // Update is called once per frame
@@ -38,6 +41,9 @@ public class SpawnManager : MonoBehaviour
         {
             waveStart = false;
             StartCoroutine(SpawnEnemies());
+
+            //reset player health
+            playerHealthScript.health = playerHealthScript.maxHealth;
         }
         if ((Time.time >= targetTime) && timing)
         {
