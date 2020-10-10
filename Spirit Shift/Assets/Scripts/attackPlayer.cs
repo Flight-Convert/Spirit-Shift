@@ -147,6 +147,10 @@ public class attackPlayer : MonoBehaviour
                     Vector3 bulletAngle = FindAngle(mousePos);
                     Debug.Log(bulletAngle.z);
                     Instantiate(playerBullet, transform.position, Quaternion.Euler(bulletAngle.x, bulletAngle.y, bulletAngle.z));
+
+                    yield return new WaitForSeconds(attackDelay - 1);
+                    justAttacked = false;
+                    yield return true;
                 }
                 //Else shoot towards player
                 else
@@ -154,11 +158,11 @@ public class attackPlayer : MonoBehaviour
                     Vector3 bulletAngle = FindAngle(player.transform.position);
                     Debug.Log(bulletAngle.z);
                     Instantiate(bullet, transform.position, Quaternion.Euler(bulletAngle.x, bulletAngle.y, bulletAngle.z));
-                }
 
-                yield return new WaitForSeconds(attackDelay);
-                justAttacked = false;
-                yield return true;
+                    yield return new WaitForSeconds(attackDelay);
+                    justAttacked = false;
+                    yield return true;
+                }
             } 
             else
             {
