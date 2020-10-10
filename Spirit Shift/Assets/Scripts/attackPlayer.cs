@@ -148,7 +148,8 @@ public class attackPlayer : MonoBehaviour
                     Debug.Log(bulletAngle.z);
                     Instantiate(playerBullet, transform.position, Quaternion.Euler(bulletAngle.x, bulletAngle.y, bulletAngle.z));
 
-                    yield return new WaitForSeconds(attackDelay - 1);
+                    //Allows player to rapid-fire when possessing a shooter
+                    yield return new WaitForSeconds(attackDelay - 0.5f);
                     justAttacked = false;
                     yield return true;
                 }
