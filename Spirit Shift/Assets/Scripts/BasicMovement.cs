@@ -29,7 +29,7 @@ public class BasicMovement : MonoBehaviour
         //Determines if player is possessing a charger enemy
         try
         {
-            isCharger = GetComponent<attackPlayer>().enemyType == 1;
+            isCharger = GetComponent<attackPlayer>().enemyType == 1 && !GetComponent<attackPlayer>().justAttacked;
         }
         catch (NullReferenceException e)
         {

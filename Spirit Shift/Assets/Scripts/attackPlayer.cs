@@ -13,7 +13,7 @@ public class attackPlayer : MonoBehaviour
     //initialize reference to... 
     private Rigidbody2D rb2d;
     private GameObject player;
-    private bool justAttacked;
+    public bool justAttacked;
     [HideInInspector] public static float distance = 0f;
     public float threshold;
     public float punchDuration;
@@ -101,27 +101,32 @@ public class attackPlayer : MonoBehaviour
                 //Prepare to charge
                 justAttacked = true;
                 fist.SetActive(true);
-                yield return new WaitForSeconds(punchDuration);
 
                 //Charge
                 //If player tag true on controller then attack towards the cursor
                 if (rb2d.GetComponent<BasicMovement>())
                 {
+                    yield return new WaitForSeconds(punchDuration - 0.25f);
+
                     Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
                     Debug.Log(mousePos);
                     Vector3 mouseAngle = transform.rotation.eulerAngles - FindAngle(mousePos);
                     fist.transform.rotation = Quaternion.Euler(new Vector3(Mathf.Abs(mouseAngle.x), Mathf.Abs(mouseAngle.y), Mathf.Abs(mouseAngle.z) + 90));
                     rb2d.AddForce(chargeForce * findDirectionFromPos(mousePos), ForceMode2D.Impulse);
+
+                    yield return new WaitForSeconds(attackDelay - 0.5f);
                 }
                 //Else attack towards player
                 else
                 {
+                    yield return new WaitForSeconds(punchDuration);
+
                     Vector3 fistAngle = transform.rotation.eulerAngles - FindAngle(player.transform.position);
                     fist.transform.rotation = Quaternion.Euler(new Vector3(Mathf.Abs(fistAngle.x), Mathf.Abs(fistAngle.y), Mathf.Abs(fistAngle.z) + 90));
                     rb2d.AddForce(chargeForce * findDirectionFromPos(player.transform.position), ForceMode2D.Impulse);
-                }
 
-                yield return new WaitForSeconds(attackDelay);
+                    yield return new WaitForSeconds(attackDelay);
+                }
 
                 //Done Charging
                 yield return new WaitForSeconds(punchDuration);
