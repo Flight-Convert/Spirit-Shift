@@ -30,6 +30,7 @@ public class SpawnManager : MonoBehaviour
     private bool timing = false;
     [HideInInspector] PlayerHealth playerHealthScript;
     private BodySwitcher bodySwitcher;
+    private bool gameOver;
 
     private void Start()
     {
@@ -41,36 +42,47 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!bodySwitcher.isInControl())
+        gameOver = playerHealthScript.GetGameOver();
+        if (gameOver)
         {
-            controlText.text = "Right-Click the player to regain control!";
+            //Don't do behavior
         }
-        else
+        else 
         {
-            controlText.text = " ";
+            //play the game
+            if (!bodySwitcher.isInControl())
+            {
+                controlText.text = "Right-Click the player to regain control!";
+            }
+            else
+            {
+                controlText.text = " ";
+            }
+
+            if (waveStart)
+            {
+                bodySwitcher.isNewWave(true);
+                waveStart = false;
+                StartCoroutine(SpawnEnemies());
+
+                //reset player health
+                playerHealthScript.health = playerHealthScript.maxHealth;
+            }
+            if ((Time.time >= targetTime) && timing)
+            {
+                timing = false;
+                spawningEnemies = initialEnemies + (waveCount * waveEnemyMultiplier);
+                numEnemies = spawningEnemies;
+                waveCount++;
+                waveStart = true;
+            }
+            if (timing)
+            {
+                waveText.text = "Wave " + waveCount + ": " + (int)(targetTime - Time.time) + " s";
+            }
         }
 
-        if(waveStart)
-        {
-            bodySwitcher.isNewWave(true); 
-            waveStart = false;
-            StartCoroutine(SpawnEnemies());
-
-            //reset player health
-            playerHealthScript.health = playerHealthScript.maxHealth;
-        }
-        if ((Time.time >= targetTime) && timing)
-        {
-            timing = false;
-            spawningEnemies = initialEnemies + (waveCount * waveEnemyMultiplier);
-            numEnemies = spawningEnemies;
-            waveCount++;
-            waveStart = true;
-        }
-        if(timing)
-        {
-            waveText.text = "Wave " + waveCount + ": " + (int)(targetTime - Time.time) + " s";
-        }
+        
     }
 
     IEnumerator SpawnEnemies()
@@ -88,7 +100,7 @@ public class SpawnManager : MonoBehaviour
         targetTime = Time.time + ((initialEnemies + (waveCount * waveEnemyMultiplier)) * spawnDelay) + additionalWaveTime;
         for (int i = 0; i < spawningEnemies; i++)
         {
-            while (FindObjectOfType<PauseMenu>().paused)
+            while (FindObjectOfType<PauseMenu>().paused || gameOver == true)
             {
                 yield return null;
             }

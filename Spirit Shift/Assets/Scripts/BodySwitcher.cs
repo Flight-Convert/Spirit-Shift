@@ -22,10 +22,11 @@ public class BodySwitcher : MonoBehaviour
     private SpawnManager spawnManager;
     private bool newWave;
     private bool ControlCheck;
-
+    private bool gameOver;
 
     void Start()
     {
+        playerHealth = GameObject.FindGameObjectWithTag("HealthSystem").GetComponent<PlayerHealth>();
         player = FindObjectOfType<BasicMovement>();
         playerHusk = FindObjectOfType<boundary>();
         followCamera = Camera.main.GetComponentInChildren<CinemachineVirtualCamera>();
@@ -36,103 +37,106 @@ public class BodySwitcher : MonoBehaviour
 
     void Update()
     {
-        if(FindObjectOfType<BasicMovement>() == null)
-        {
-            ControlCheck = false;
-        }
-        else
-        {
-            ControlCheck = true;
-        }
-        
+        if (FindObjectOfType<PauseMenu>().paused) return;
 
         //Reference to playerHusk location
         Vector2 playerLocation = playerHusk.transform.position;
 
-        if (FindObjectOfType<PauseMenu>().paused) return;
-        //SBehavior.gameObject.GetComponent<>;
+        gameOver = playerHealth.GetGameOver();
 
-        //SBehavior.GetComponent<SwitchBehavior>().getBehavior();
-
-        //if wavestart ==true and basicmovement script is not found
-        if (newWave == true && FindObjectOfType<BasicMovement>() == null)
+        if(gameOver) //Don't do behavior
         {
-            Debug.Log("BasicMovement not found on waveStart");
-            Debug.Log("Camera moving to playerHusk");
-
-            //set Camera to follow the husk body so you can click on it
+            showBothTeams();
             followCamera.Follow = playerHusk.transform;
-
-            newWave = false;
         }
-
-        // If right mouse button is clicked
-        if (Input.GetMouseButtonDown(1))
+        else //Play the game
         {
-            // Perform a raycast to see what we clicked
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hitInfo;
-
-            hitInfo = Physics2D.GetRayIntersection(ray);
-
-            // If we actually clicked on something
-            if (hitInfo.collider != null)
+            if (FindObjectOfType<BasicMovement>() == null)
             {
-                //reference for hit object
-                SBehavior = hitInfo.collider.GetComponent<SwitchBehavior>(); //Checks if is switchable
-                //followPlayer isEnemy = hitInfo.collider.GetComponent<followPlayer>(); //Only works on enemies
-                //boundary isPlayer = hitInfo.collider.GetComponent<boundary>(); //Only works on player
+                ControlCheck = false;
+            }
+            else
+            {
+                ControlCheck = true;
+            }
 
-                // If the hit object is switchable 
-                if (SBehavior != null) 
+            //if wavestart ==true and basicmovement script is not found
+            if (newWave == true && FindObjectOfType<BasicMovement>() == null)
+            {
+                Debug.Log("BasicMovement not found on waveStart");
+                Debug.Log("Camera moving to playerHusk");
+
+                //set Camera to follow the husk body so you can click on it
+                followCamera.Follow = playerHusk.transform;
+
+                newWave = false;
+            }
+
+            // If right mouse button is clicked
+            if (Input.GetMouseButtonDown(1))
+            {
+                // Perform a raycast to see what we clicked
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit2D hitInfo;
+
+                hitInfo = Physics2D.GetRayIntersection(ray);
+
+                // If we actually clicked on something
+                if (hitInfo.collider != null)
                 {
-                    //prep: set player object tag to player inactive
-                    Debug.Log("Set player husk to inactive");
-
-                    //Prep: set husk tag to inactive
-                    playerHusk.gameObject.tag = "Player Inactive";
-                    
-                    //reference SBehavior to change the objects behavior to 3 (inactive)
-                    playerHusk.GetComponent<SwitchBehavior>().setBehavior(3);
-                    
-                    //Check that you correctly set behavior
-                    Debug.Log("Current Behavior: " + SBehavior.GetComponent<SwitchBehavior>().getBehavior());
-
-                    //If current is player
-                    if (SBehavior.GetComponent<SwitchBehavior>().getBehavior() == 3)
+                    //reference for hit object
+                    SBehavior = hitInfo.collider.GetComponent<SwitchBehavior>(); //Checks if is switchable
+                                                                                                                                                           
+                    // If the hit object is switchable 
+                    if (SBehavior != null)
                     {
-                        //currentBehavior = 3 //(player inactive)
-                        Debug.Log("'this' -> means the player husk!");
+                        //prep: set player object tag to player inactive
+                        Debug.Log("Set player husk to inactive");
 
-                        Debug.Log("Running Switch_bodies");
+                        //Prep: set husk tag to inactive
+                        playerHusk.gameObject.tag = "Player Inactive";
 
-                        //currentBehavior = 2 //(player active)
-                        playerHusk.GetComponent<SwitchBehavior>().setBehavior(2);
+                        //reference SBehavior to change the objects behavior to 3 (inactive)
+                        playerHusk.GetComponent<SwitchBehavior>().setBehavior(3);
 
-                        switchBodies(hitInfo.collider.gameObject); //here
-                        
-                    }
+                        //Check that you correctly set behavior
+                        Debug.Log("Current Behavior: " + SBehavior.GetComponent<SwitchBehavior>().getBehavior());
 
-                    //If current is enemy
-                    if (SBehavior.GetComponent<SwitchBehavior>().getBehavior() == 1)
-                    {
-                        //currentBehavior = 1 //(enemy)
-                        Debug.Log("'this' -> means the enemy!");
+                        //If current is player
+                        if (SBehavior.GetComponent<SwitchBehavior>().getBehavior() == 3)
+                        {
+                            //currentBehavior = 3 //(player inactive)
+                            Debug.Log("'this' -> means the player husk!");
 
-                        SBehavior.GetComponent<SwitchBehavior>().setBehavior(2);
-                        Debug.Log("New Behavior: " + SBehavior.GetComponent<SwitchBehavior>().getBehavior());
+                            Debug.Log("Running Switch_bodies");
 
-                        Debug.Log("Running Switch_bodies");
-                        switchBodies(hitInfo.collider.gameObject);
-                        
+                            //currentBehavior = 2 //(player active)
+                            playerHusk.GetComponent<SwitchBehavior>().setBehavior(2);
+
+                            switchBodies(hitInfo.collider.gameObject); //here
+
+                        }
+
+                        //If current is enemy
+                        if (SBehavior.GetComponent<SwitchBehavior>().getBehavior() == 1)
+                        {
+                            //currentBehavior = 1 //(enemy)
+                            Debug.Log("'this' -> means the enemy!");
+
+                            SBehavior.GetComponent<SwitchBehavior>().setBehavior(2);
+                            Debug.Log("New Behavior: " + SBehavior.GetComponent<SwitchBehavior>().getBehavior());
+
+                            Debug.Log("Running Switch_bodies");
+                            switchBodies(hitInfo.collider.gameObject);
+
+                        }
                     }
                 }
             }
+            if (Input.GetKeyDown(KeyCode.B)) showBlueTeam();
+            if (Input.GetKeyDown(KeyCode.R)) showRedTeam();
+            if (Input.GetKeyDown(KeyCode.G)) showBothTeams();
         }
-
-        if (Input.GetKeyDown(KeyCode.B)) showBlueTeam();
-        if (Input.GetKeyDown(KeyCode.R)) showRedTeam();
-        if (Input.GetKeyDown(KeyCode.G)) showBothTeams();
     }
 
     public void isNewWave(bool temp)

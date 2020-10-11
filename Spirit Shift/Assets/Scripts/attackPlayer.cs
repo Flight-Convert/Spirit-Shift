@@ -20,6 +20,7 @@ public class attackPlayer : MonoBehaviour
     public float attackDelay;
     public float chargeForce;
     public GameObject fist;
+    private bool gameOver;
     //private bool isControlled;
     private PlayerHealth playerHealthScript;
     private SpawnManager spawnManager;
@@ -48,27 +49,37 @@ public class attackPlayer : MonoBehaviour
     {
         if (FindObjectOfType<PauseMenu>().paused) return;
 
-        //NullReferenceException: Object reference not set to an instance of an object
         distance = Vector3.Distance(rb2d.transform.position, player.transform.position);
 
-        //if player is in enemy body
-        if (rb2d.GetComponent<BasicMovement>())
+        gameOver = playerHealthScript.GetGameOver();
+        if(gameOver)
         {
-            //on left mouse click
-            if (Input.GetMouseButtonDown(0))
-            {
-                StartCoroutine(Attack());
-            }
+            //Don't do behavior
         }
-        //if player isn't in enemy body
         else
         {
-            //if enemy is close enough to player body
-            if (distance <= threshold)
+            //Play the game
+
+            //if player is in enemy body
+            if (rb2d.GetComponent<BasicMovement>())
             {
-                StartCoroutine(Attack());
+                //on left mouse click
+                if (Input.GetMouseButtonDown(0))
+                {
+                    StartCoroutine(Attack());
+                }
+            }
+            //if player isn't in enemy body
+            else
+            {
+                //if enemy is close enough to player body
+                if (distance <= threshold)
+                {
+                    StartCoroutine(Attack());
+                }
             }
         }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)

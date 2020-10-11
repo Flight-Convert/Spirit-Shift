@@ -76,6 +76,11 @@ public class PlayerHealth : MonoBehaviour
 
     }
 
+    public bool GetGameOver()
+    {
+        return gameOver;
+    }
+
     public void TakeDamage()
     {
         health--;
