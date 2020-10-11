@@ -13,6 +13,7 @@ public class PauseMenu : MonoBehaviour
 {
     // Keeps track of whether or not the game is paused
     public bool paused;
+    public GameObject tutorialTips;
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +50,10 @@ public class PauseMenu : MonoBehaviour
     {
         paused = true;
         transform.GetChild(0).gameObject.SetActive(true);
+        if (SceneManager.GetActiveScene().name == "TutorialScene")
+            tutorialTips.SetActive(true);
+        else
+            tutorialTips.SetActive(false);
     }
 
     // Unpause the game
