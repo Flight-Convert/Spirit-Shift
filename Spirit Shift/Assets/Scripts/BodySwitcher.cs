@@ -18,6 +18,9 @@ public class BodySwitcher : MonoBehaviour
     public AudioSource playerAudio;
     public AudioClip switchSound;
     private CinemachineVirtualCamera followCamera;
+    private PlayerHealth playerHealth;
+    private SpawnManager spawnManager;
+    private bool newWave = false;
 
     void Start()
     {
@@ -25,14 +28,34 @@ public class BodySwitcher : MonoBehaviour
         player = FindObjectOfType<BasicMovement>();
         playerHusk = FindObjectOfType<boundary>();
         followCamera = Camera.main.GetComponentInChildren<CinemachineVirtualCamera>();
+        spawnManager = FindObjectOfType<SpawnManager>();
     }
 
     void Update()
     {
+        //Reference to playerHusk location
+        Vector2 playerLocation = playerHusk.transform.position;
+
         if (FindObjectOfType<PauseMenu>().paused) return;
         //SBehavior.gameObject.GetComponent<>;
 
         //SBehavior.GetComponent<SwitchBehavior>().getBehavior();
+
+        // Set camera to follow new body
+        //NullReferenceException: Object Reference not set to an instance of an object
+        //followCamera.Follow = player.transform;
+
+        //if wavestart ==true and basicmovement script is not found
+        if (newWave == true && FindObjectOfType<BasicMovement>() == null)
+        {
+            Debug.Log("BasicMovement not found on waveStart");
+            Debug.Log("Camera moving to playerHusk");
+
+            //set Camera to follow the husk body so you can click on it
+            followCamera.Follow = playerHusk.transform;
+
+            newWave = false;
+        }
 
         // If right mouse button is clicked
         if (Input.GetMouseButtonDown(1))
@@ -40,6 +63,7 @@ public class BodySwitcher : MonoBehaviour
             // Perform a raycast to see what we clicked
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hitInfo;
+
             hitInfo = Physics2D.GetRayIntersection(ray);
 
             // If we actually clicked on something
@@ -56,7 +80,7 @@ public class BodySwitcher : MonoBehaviour
                     //prep: set player object tag to player inactive
                     Debug.Log("Set player husk to inactive");
 
-                    //set husk tag to inactive
+                    //Prep: set husk tag to inactive
                     playerHusk.gameObject.tag = "Player Inactive";
                     
                     //reference SBehavior to change the objects behavior to 3 (inactive)
@@ -72,10 +96,12 @@ public class BodySwitcher : MonoBehaviour
                         Debug.Log("'this' -> means the player husk!");
 
                         Debug.Log("Running Switch_bodies");
-                        switchBodies(hitInfo.collider.gameObject);
 
                         //currentBehavior = 2 //(player active)
                         playerHusk.GetComponent<SwitchBehavior>().setBehavior(2);
+
+                        switchBodies(hitInfo.collider.gameObject); //here
+                        
                     }
 
                     //If current is enemy
@@ -95,28 +121,32 @@ public class BodySwitcher : MonoBehaviour
             }
         }
 
-        /*if (spawnManager.OneEnemyRemaining())
-        {
-            //Give a second or two before killing the last (unkillable) enemy
-            yield return new WaitForSeconds(2.0f);
-            Destroy(gameObject);
-        }*/
-
         if (Input.GetKeyDown(KeyCode.B)) showBlueTeam();
         if (Input.GetKeyDown(KeyCode.R)) showRedTeam();
         if (Input.GetKeyDown(KeyCode.G)) showBothTeams();
     }
 
+    public void isNewWave(bool temp)
+    {
+        newWave = temp;
+
+
+    }
+
     void switchBodies(GameObject newBody)
     {
-        FindObjectOfType<BasicMovement>().GetComponent<SwitchBehavior>().setBehavior(1);
-
-        playerAudio.PlayOneShot(switchSound);
-        // Add BasicMovement script to clicked enemy 
-        BasicMovement newPlayer = newBody.AddComponent<BasicMovement>();
+        if (FindObjectOfType<BasicMovement>() != null)
+        {
+            FindObjectOfType<BasicMovement>().GetComponent<SwitchBehavior>().setBehavior(1); //here
+        }      
 
         // Destroy old BasicMovement script
         Destroy(player);
+
+        playerAudio.PlayOneShot(switchSound);
+        
+        // Add BasicMovement script to clicked enemy 
+        BasicMovement newPlayer = newBody.AddComponent<BasicMovement>();
 
         // Get reference to new BasicMovement script
         player = newPlayer;

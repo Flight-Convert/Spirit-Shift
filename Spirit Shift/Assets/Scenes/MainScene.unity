@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 15924395}
   m_Layer: 0
   m_Name: Bottom Border
-  m_TagString: Untagged
+  m_TagString: Background
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -773,7 +773,7 @@ GameObject:
   - component: {fileID: 804497585}
   m_Layer: 0
   m_Name: Left Border
-  m_TagString: Untagged
+  m_TagString: Background
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5960,6 +5960,7 @@ MonoBehaviour:
   numEnemies: 10
   spawnDelay: 2
   initialWaveTime: 3
+  waveStart: 0
   additionalWaveTime: 5
   targetTime: 0
 --- !u!4 &956617419
@@ -6096,7 +6097,7 @@ GameObject:
   - component: {fileID: 1209943894}
   m_Layer: 0
   m_Name: Right Border
-  m_TagString: Untagged
+  m_TagString: Background
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6727,7 +6728,7 @@ GameObject:
   - component: {fileID: 1916833540}
   m_Layer: 0
   m_Name: Top Border
-  m_TagString: Untagged
+  m_TagString: Background
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

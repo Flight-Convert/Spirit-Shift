@@ -21,17 +21,19 @@ public class SpawnManager : MonoBehaviour
     private int spawningEnemies = 10;
     public float spawnDelay = 1f;
     public float initialWaveTime = 3f;
-    public static bool waveStart;
+    public bool waveStart;
     public float additionalWaveTime = 5f;
     private int waveCount = 1;
     [HideInInspector]public float targetTime;
     private bool timing = false;
     [HideInInspector] PlayerHealth playerHealthScript;
+    private BodySwitcher bodySwitcher;
 
     private void Start()
     {
         waveStart = true;
         playerHealthScript = GameObject.FindGameObjectWithTag("HealthSystem").GetComponent<PlayerHealth>();
+        bodySwitcher = FindObjectOfType<BodySwitcher>();
     }
 
     // Update is called once per frame
@@ -39,6 +41,7 @@ public class SpawnManager : MonoBehaviour
     {
         if(waveStart)
         {
+            bodySwitcher.isNewWave(true); 
             waveStart = false;
             StartCoroutine(SpawnEnemies());
 
@@ -104,5 +107,10 @@ public class SpawnManager : MonoBehaviour
     public void EnemyDestroyed()
     {
         numEnemies--;
+    }
+
+    public bool GetWaveStart()
+    {
+        return waveStart;
     }
 }

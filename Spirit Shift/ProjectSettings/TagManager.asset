@@ -9,6 +9,7 @@ TagManager:
   - PlayerBullet
   - HealthSystem
   - SpawnManager
+  - Background
   layers:
   - Default
   - TransparentFX
