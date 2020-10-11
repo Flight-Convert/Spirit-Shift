@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbb9db9d7df403948b64a4c4e4a14682, type: 3}
+  m_Name: Wave
+  m_EditorClassIdentifier: 
+  UIPanel: {fileID: 9000150686419141787, guid: 928bfb32a0c6ca64fbbb89801695a12d, type: 3}
+  tutorialUI: {fileID: 0}
