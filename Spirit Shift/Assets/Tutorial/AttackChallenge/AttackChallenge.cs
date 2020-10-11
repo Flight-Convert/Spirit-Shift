@@ -13,8 +13,6 @@ public class AttackChallenge : TutorialChallenge
 {
     bool attacked;
 
-    TutorialUI tutorialUI;
-
     // Initialize the boolean
     public override void Init(GameObject UIHolder)
     {
@@ -28,7 +26,6 @@ public class AttackChallenge : TutorialChallenge
     {
         if (attacked)
         {
-            Destroy(tutorialUI.gameObject);
             return true;
         }
         return false;

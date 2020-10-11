@@ -24,8 +24,6 @@ public class BodySwitchChallenge : TutorialChallenge
     bool switchedToTarget;
     GameObject currentBody;
 
-    TutorialUI tutorialUI;
-
     // Set up the array of booleans
     public override void Init(GameObject UIHolder)
     {
@@ -41,7 +39,6 @@ public class BodySwitchChallenge : TutorialChallenge
     {
         if (switchedToTarget)
         {
-            Destroy(tutorialUI.gameObject);
             return true;
         }
 

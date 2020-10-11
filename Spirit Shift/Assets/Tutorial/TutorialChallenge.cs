@@ -10,6 +10,8 @@ using UnityEngine;
 public abstract class TutorialChallenge : ScriptableObject
 {
     public GameObject UIPanel;
+    [HideInInspector]
+    public TutorialUI tutorialUI;
 
     public abstract void Init(GameObject UIHolder);
 

@@ -1369,7 +1369,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1402981433843225466, guid: f9538007df203ca4c8f6318cf7afe141, type: 3}
       propertyPath: challenges.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1402981433843225466, guid: f9538007df203ca4c8f6318cf7afe141, type: 3}
       propertyPath: UIHolder
@@ -1378,7 +1378,15 @@ PrefabInstance:
     - target: {fileID: 1402981433843225466, guid: f9538007df203ca4c8f6318cf7afe141, type: 3}
       propertyPath: challenges.Array.data[3]
       value: 
+      objectReference: {fileID: 11400000, guid: 9a6c8321560e720469ecc475d8edd1d6, type: 2}
+    - target: {fileID: 1402981433843225466, guid: f9538007df203ca4c8f6318cf7afe141, type: 3}
+      propertyPath: challenges.Array.data[4]
+      value: 
       objectReference: {fileID: 11400000, guid: 5eafb6871f395a4429e36885d79055cf, type: 2}
+    - target: {fileID: 1402981433843225466, guid: f9538007df203ca4c8f6318cf7afe141, type: 3}
+      propertyPath: challenges.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1db94bf95d7cb624481026e4dc8d5af0, type: 2}
     - target: {fileID: 1402981433843225467, guid: f9538007df203ca4c8f6318cf7afe141, type: 3}
       propertyPath: m_Name
       value: TutorialManager

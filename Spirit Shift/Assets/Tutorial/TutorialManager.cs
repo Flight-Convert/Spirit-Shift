@@ -19,6 +19,8 @@ public class TutorialManager : MonoBehaviour
 
     public GameObject CompletionPanel;
 
+    public static bool nextPressed;
+
     void Start()
     {
         // Start the first tutorial part (if it exists)
@@ -34,6 +36,7 @@ public class TutorialManager : MonoBehaviour
     // Checks every frame to see if the tutorial part has been completed yet
     IEnumerator waitForChallengeCompletion(int challengeIndex)
     {
+        nextPressed = false;
         // Get the current part
         TutorialChallenge challenge = challenges[challengeIndex];
 
@@ -41,11 +44,13 @@ public class TutorialManager : MonoBehaviour
         challenge.Init(UIHolder);
 
         // Update the part until it is completed
-        while(!challenge.IsCompleted())
+        while(!challenge.IsCompleted() && !nextPressed)
         {
             challenge.UpdateCompletedTasks();
             yield return null;
         }
+
+        Destroy(challenge.tutorialUI.gameObject);
 
         // Move on to the next part, or end tutorial
         challengeIndex++;

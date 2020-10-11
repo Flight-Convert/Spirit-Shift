@@ -14,8 +14,6 @@ public class ButtonPressChallenge : TutorialChallenge
     public KeyCode[] buttons;
     bool[] buttonsPressed;
 
-    TutorialUI tutorialUI;
-
     // Set up the array of booleans
     public override void Init(GameObject UIHolder)
     {
@@ -37,7 +35,6 @@ public class ButtonPressChallenge : TutorialChallenge
             if (!buttonsPressed[i]) return false;
         }
 
-        Destroy(tutorialUI.gameObject);
         return true;
     }
 
