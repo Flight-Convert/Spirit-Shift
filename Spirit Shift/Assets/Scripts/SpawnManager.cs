@@ -15,6 +15,8 @@ public class SpawnManager : MonoBehaviour
     public float ySpawnDistance;
     public GameObject[] enemies;
     public Text waveText;
+    public Text controlText;
+
     public int initialEnemies = 8;
     public int waveEnemyMultiplier = 2;
     public int numEnemies;
@@ -39,6 +41,15 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!bodySwitcher.isInControl())
+        {
+            controlText.text = "Right-Click the player to regain control!";
+        }
+        else
+        {
+            controlText.text = " ";
+        }
+
         if(waveStart)
         {
             bodySwitcher.isNewWave(true); 

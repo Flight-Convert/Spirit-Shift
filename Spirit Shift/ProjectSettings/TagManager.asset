@@ -10,6 +10,8 @@ TagManager:
   - HealthSystem
   - SpawnManager
   - Background
+  - Feedback
+  - Control
   layers:
   - Default
   - TransparentFX

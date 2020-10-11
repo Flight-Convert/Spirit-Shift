@@ -20,19 +20,32 @@ public class BodySwitcher : MonoBehaviour
     private CinemachineVirtualCamera followCamera;
     private PlayerHealth playerHealth;
     private SpawnManager spawnManager;
-    private bool newWave = false;
+    private bool newWave;
+    private bool ControlCheck;
+
 
     void Start()
     {
-        
         player = FindObjectOfType<BasicMovement>();
         playerHusk = FindObjectOfType<boundary>();
         followCamera = Camera.main.GetComponentInChildren<CinemachineVirtualCamera>();
         spawnManager = FindObjectOfType<SpawnManager>();
+        newWave = false;
+        ControlCheck = true;
     }
 
     void Update()
     {
+        if(FindObjectOfType<BasicMovement>() == null)
+        {
+            ControlCheck = false;
+        }
+        else
+        {
+            ControlCheck = true;
+        }
+        
+
         //Reference to playerHusk location
         Vector2 playerLocation = playerHusk.transform.position;
 
@@ -40,10 +53,6 @@ public class BodySwitcher : MonoBehaviour
         //SBehavior.gameObject.GetComponent<>;
 
         //SBehavior.GetComponent<SwitchBehavior>().getBehavior();
-
-        // Set camera to follow new body
-        //NullReferenceException: Object Reference not set to an instance of an object
-        //followCamera.Follow = player.transform;
 
         //if wavestart ==true and basicmovement script is not found
         if (newWave == true && FindObjectOfType<BasicMovement>() == null)
@@ -129,8 +138,11 @@ public class BodySwitcher : MonoBehaviour
     public void isNewWave(bool temp)
     {
         newWave = temp;
+    }
 
-
+    public bool isInControl()
+    {
+        return ControlCheck;
     }
 
     void switchBodies(GameObject newBody)
