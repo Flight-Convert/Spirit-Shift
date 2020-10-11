@@ -24,12 +24,27 @@ public class BodySwitchChallenge : TutorialChallenge
     bool switchedToTarget;
     GameObject currentBody;
 
+    public GameObject[] enemiesToSpawn;
+
     // Set up the array of booleans
     public override void Init(GameObject UIHolder)
     {
         // Find the player's current body
         currentBody = FindObjectOfType<BasicMovement>().gameObject;
         switchedToTarget = false;
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null) player = GameObject.FindGameObjectWithTag("Player Inactive");
+        Vector3 playerPos = player.transform.position;
+
+        // Spawn enemies around the player
+        for (int i = 0; i < enemiesToSpawn.Length; i++)
+        {
+            Vector3 spawnPos = new Vector3(Random.Range(1, 3), Random.Range(1, 3), 0);
+            spawnPos = spawnPos.normalized * 6;
+
+            Instantiate(enemiesToSpawn[i], playerPos + spawnPos, Quaternion.identity);
+        }
 
         tutorialUI = Instantiate(UIPanel, UIHolder.transform).GetComponent<TutorialUI>();
     }
