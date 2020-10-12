@@ -14,12 +14,14 @@ public class ProjectileMover : MonoBehaviour
     public float destroyDelay;
     private Rigidbody2D rb2d;
     private PlayerHealth playerHealthScript;
+    private SpawnManager spawnManagerScript;
 
     void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
         StartCoroutine(DestroyAfterDelay());
         playerHealthScript = GameObject.FindGameObjectWithTag("HealthSystem").GetComponent<PlayerHealth>();
+        spawnManagerScript = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManager>();
     }
 
     // Update is called once per frame
@@ -51,6 +53,7 @@ public class ProjectileMover : MonoBehaviour
             Debug.Log("Shot Enemy");
             Destroy(other.gameObject);
             Destroy(gameObject);
+            spawnManagerScript.EnemyDestroyed();
         }
     }
 }

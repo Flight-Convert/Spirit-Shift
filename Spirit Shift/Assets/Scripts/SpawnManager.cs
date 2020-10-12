@@ -130,6 +130,7 @@ public class SpawnManager : MonoBehaviour
     public void EnemyDestroyed()
     {
         numEnemies--;
+        targetTime--;
     }
 
     public bool GetWaveStart()
