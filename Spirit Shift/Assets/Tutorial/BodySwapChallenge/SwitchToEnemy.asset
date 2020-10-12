@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: SwitchToEnemy
   m_EditorClassIdentifier: 
   UIPanel: {fileID: 7444099791128897348, guid: ddccd7f3f40738d46b213c5fd6b30a12, type: 3}
+  tutorialUI: {fileID: 0}
   target: 1
+  enemiesToSpawn:
+  - {fileID: 5469834019942450742, guid: 1d28562c832548b48b5fedf3a789d5bb, type: 3}
+  - {fileID: 5227574200980075360, guid: 22a87f7d6bbb271418f32d5f9efe7190, type: 3}

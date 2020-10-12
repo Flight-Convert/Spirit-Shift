@@ -13,3 +13,7 @@ MonoBehaviour:
   m_Name: attack
   m_EditorClassIdentifier: 
   UIPanel: {fileID: 8360483918155128855, guid: d4e7dabeae392a44ea9b8d79a0968949, type: 3}
+  tutorialUI: {fileID: 0}
+  enemiesToSpawn:
+  - {fileID: 3254776386612130995, guid: 7610d259857144f4296a5121bd6183c6, type: 3}
+  - {fileID: 2435970250783763614, guid: 2a458063ed983094192410f8d48d9256, type: 3}

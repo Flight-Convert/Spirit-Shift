@@ -507,11 +507,13 @@ MonoBehaviour:
   ySpawnDistance: 0
   enemies: []
   waveText: {fileID: 1592079196}
+  controlText: {fileID: 1592079196}
   initialEnemies: 0
   waveEnemyMultiplier: 0
   numEnemies: 0
   spawnDelay: 10000
   initialWaveTime: 3
+  waveStart: 0
   additionalWaveTime: 5
   targetTime: 0
 --- !u!4 &1377322370
@@ -803,8 +805,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 896bceb400344704e94bfff0de348c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  maxHealth: 0
+  health: 1000
+  maxHealth: 1000
   hearts: []
   fullHeart: {fileID: 0}
   emptyHeart: {fileID: 0}
